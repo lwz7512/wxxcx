@@ -1,0 +1,4 @@
+/* pages/kpvwpt/kpvwpt.wxss */
+.weui-panel {
+  margin-top: 0;
+}

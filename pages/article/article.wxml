@@ -1,0 +1,51 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">China Cyber News Alert</view>
+        <view class='line'></view>
+        <view class="page__desc">April 2017</view> 
+    </view>
+    <view class='intro'>Abstract: Ever since China adopted the Cybersecurity Law in November 2016, questions have been raised as to the security requirements on overseas data transfer. </view>
+    <view class="page__bd">
+        <view class="weui-article">
+            <view class="weui-article__section">
+                
+                <view class="weui-article__section">
+                    
+                    <view class="weui-article__p">
+                        Ever since China adopted the Cybersecurity Law in November 2016, questions have been raised as to the security requirements on overseas data transfer. A few aspects of the security assessment, for example, were unclear such as which government body or department is responsible for the security assessment? Which organisations are required to be assessed? What is the scope of the assessment?
+                    </view>
+                    <!-- <view class="weui-article__p">
+                    With the Law due to come into effect on 1 June 2017, some of those questions have been answered when the State Internet Information Office released the Measures for Carrying out Security Assessment on Personal Information and Important Data for Overseas Transfer (Draft for Public Comment) on 11 April 2017.
+                    </view> -->
+                     <div class="weui-article__p">
+                        <image class="weui-article__img" src="../../materials/Snip20171128_7.png" mode="aspectFit" style="height: 180px;" />
+                        <!-- <image class="weui-article__img" src="../images/pic_article.png" mode="aspectFit" style="height: 180px;" /> -->
+                    </div> 
+                </view>
+                <view class="weui-article__section">
+                    <view class="weui-article__h2">1. Functional departments:</view> 
+                    <view class="weui-article__p">
+                        China’s cyberspace administration bodies are responsible for arrangement and coordination whereas the industry authorities / regulatory bodies are responsible for execution.
+                    </view>
+
+                    <view class="weui-article__h2">2. Key assessment areas:</view>
+                    <view class='weui-article__p'>
+                      • Necessity of the transfer of the data
+                    </view>
+                    <view class='weui-article__p'>
+                      • Involvement of personal information: the amount, scope, type, level of sensitivity, and whether the transfer has been authorised by the personal information subject
+                    </view>
+                    <view class='weui-article__p'>
+                      • Involvement of critical data: the amount, scope, type and level of sensitivity
+                    </view>
+                    <view class='weui-article__p'>
+                      • The intended recipient’s security measures, capabilities and, competence, and the cybersecurity environment of the country and region where the recipient is located
+                    </view>
+                    <view class='weui-article__p'>
+                      • Unauthorised data disclosure, modification or even damage risk during overseas transfer or re-transfer • Whether the transfer and aggregation of data can lead to national security risks, or harm public and personal legal interests
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

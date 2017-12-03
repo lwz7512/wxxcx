@@ -1,0 +1,16 @@
+<!--pages/pptreport2/pptreport2.wxml-->
+<view class="weui-panel weui-panel_access">
+  <view class="section__ctn">
+     <image class="weui-article__img" src="../../materials/Snip20171127_3.png" mode='aspectFill'  />       
+  </view>
+</view>
+<view class="weui-panel weui-panel_access">
+  <view class="section__ctn">
+     <image class="weui-article__img" src="../../materials/Snip20171127_4.png" mode='aspectFill'  />       
+  </view>
+</view>
+<view class="weui-panel weui-panel_access">
+  <view class="section__ctn">
+     <image class="weui-article__img" src="../../materials/Snip20171127_5.png" mode='aspectFill'  />       
+  </view>
+</view>

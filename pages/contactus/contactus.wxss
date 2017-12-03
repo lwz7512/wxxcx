@@ -1,0 +1,12 @@
+/* pages/contactus/contactus.wxss */
+.weui-panel {
+  margin-top: 0;
+}
+
+.top-hint {
+  color: #666;
+}
+
+.page__hd.small-pad {
+  padding: 20px;
+}
