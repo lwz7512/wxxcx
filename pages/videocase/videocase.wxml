@@ -1,0 +1,22 @@
+<!--pages/videocase/videocase.wxml-->
+<view class="section tc">
+  <video src="{{src}}"   controls ></video>
+</view>
+<view class="page__hd">
+    <view class="page__title">{{desc}}</view>
+    <view class='line'></view>
+    <view class="page__desc">December 2017</view>
+</view>
+<view class="page__bd">
+  <view class="weui-article">
+    <view class="weui-article__section">
+
+        <view class="weui-article__p">
+            Ever since China adopted the Cybersecurity Law in November 2016, questions have been raised as to the security requirements on overseas data transfer. A few aspects of the security assessment, for example, were unclear such as which government body or department is responsible for the security assessment? Which organisations are required to be assessed? What is the scope of the assessment?
+        </view>
+        <view class="weui-article__p">
+        With the Law due to come into effect on 1 June 2017, some of those questions have been answered when the State Internet Information Office released the Measures for Carrying out Security Assessment on Personal Information and Important Data for Overseas Transfer (Draft for Public Comment) on 11 April 2017.
+        </view>
+    </view>
+  </view>
+</view>

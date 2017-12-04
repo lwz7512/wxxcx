@@ -43,6 +43,24 @@
                         <view class="weui-media-box__desc">2017.11.27</view>
                     </view>
                 </navigator>
+                <navigator url="../videocase/videocase?id=1" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="../../materials/thumb_20171204_19.png" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">视频内容案例一</view>
+                        <view class="weui-media-box__desc">2017.11.27</view>
+                    </view>
+                </navigator>
+                <navigator url="../videocase/videocase?id=2" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="../../materials/thumb_20171204_19.png" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">视频内容案例二</view>
+                        <view class="weui-media-box__desc">2017.11.27</view>
+                    </view>
+                </navigator>
             </view>
         </view>
         <!-- end of panel -->
