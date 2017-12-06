@@ -13,19 +13,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options);
+    var page = this;
     var title = '';
+    page.videoContext = wx.createVideoContext('myVideo');
+
     if (options.id=='1') {
-      this.setData({src: '../../materials/case.01.mp4', desc: '[发现·实现]成功案例分享之银行转型服务'});
+      setTimeout(function(){
+        page.setData({ 
+          src: 'http://dnld.runbytech.com/case.01.mp4', 
+          desc: '[发现·实现]成功案例分享之银行转型服务'
+        });
+      }, 1000);
       title = '[发现·实现]成功案例分享一';
     }else{
-      this.setData({src: '../../materials/case.02.mp4', desc: '[发现·实现]成功案例分享之家电售后服务数字化'});
+      setTimeout(function(){
+        page.setData({ 
+          src: 'http://dnld.runbytech.com/case.02.mp4', 
+          desc: '[发现·实现]成功案例分享之家电售后服务数字化'
+        });
+      }, 1000);
       title = '[发现·实现]成功案例分享二';
     }
 
     wx.setNavigationBarTitle({
       title: title
-    })
+    });
+
+    
+
+
   },
 
   /**

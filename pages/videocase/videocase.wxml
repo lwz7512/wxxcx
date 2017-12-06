@@ -1,6 +1,6 @@
 <!--pages/videocase/videocase.wxml-->
 <view class="section tc">
-  <video src="{{src}}"   controls ></video>
+  <video id="myVideo" src="{{src}}" poster="../../materials/cover.png" autoplay="true" controls="true" ></video>
 </view>
 <view class="page__hd">
     <view class="page__title">{{desc}}</view>
