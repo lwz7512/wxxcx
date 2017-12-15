@@ -8,6 +8,8 @@ Page({
   },
 
   onLoad: function () {
+    var app = getApp();
+    console.log(app);
     var that = this;
 
     wx.setNavigationBarTitle({
@@ -22,7 +24,13 @@ Page({
       url: 'https://ipintu.com/blog/posts',
       success: function(res) {
         console.log(res.data);
+        res.data.posts.forEach(item => {
+          item.published_at_show = item.published_at.split('T')[0]
+        });
+
         that.setData({loading: false, results: res.data.posts});
+        // 缓存起来
+        app.globalData.posts = res.data.posts;
       },
       fail: function(res) {},
       complete: function(res) {},
