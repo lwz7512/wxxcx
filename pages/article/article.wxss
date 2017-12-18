@@ -45,6 +45,17 @@ hr {
 }
 
 .weui-article__img {
-   width: 100%; 
+   width: 100%;
   /* height: 180px; */
 }
+
+.weui-media-box__desc {
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+.weui-badge {
+  margin-right: 5px;
+}
+
+/**/

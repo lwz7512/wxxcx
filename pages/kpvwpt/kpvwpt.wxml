@@ -21,27 +21,27 @@
         <view class="weui-panel weui-panel_access">
             <!-- <view class="weui-panel__hd">图文组合列表</view> -->
             <view class="weui-panel__bd">
-                <navigator url="../article/article" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" >
-                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                        <image class="weui-media-box__thumb" src="../../materials/thumb_20171128_9.png" />
-                    </view>
-                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title">文字类型报告</view>
-                        <view class="weui-media-box__desc">2017.11.27</view>
-                    </view>
-                </navigator>
-                <navigator url="../article/article" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                        <image class="weui-media-box__thumb" src="../../materials/thumb_20171128_9.png" />
-                    </view>
-                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title">文字类型报告</view>
-                        <view class="weui-media-box__desc">2017.11.27</view>
-                    </view>
-                </navigator>
+              <navigator wx:for="{{results}}" url="../article/article?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" >
+                  <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                      <image class="weui-media-box__thumb" src="{{item.feature_image}}" />
+                  </view>
+                  <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                      <view class="weui-media-box__title">{{item.title}}</view>
+                      <view class="weui-media-box__desc">{{item.published_at_show}}</view>
+                      <view class="weui-media-box__desc">
+                        <view class="weui-badge" wx:for="{{item.tags}}" wx:for-item="t" wx:if="{{t.name!='insight'}}">
+                          {{t.name}}
+                        </view>
+                      </view>
+                  </view>
+              </navigator>
             </view>
         </view>
         <!-- end of panel -->
+        <view class="weui-loadmore" wx:if="{{loading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
     </view>
     <!-- end of page__bd -->
 </view>

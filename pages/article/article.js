@@ -5,7 +5,8 @@ Page({
    */
   data: {
     title : '',
-    published_at : ''
+    published_at : '',
+    tags: []
   },
 
   /**
@@ -15,6 +16,7 @@ Page({
     var app = getApp();
     var pid = options.id;
     var post = {title:''};
+    // 找出对应的帖子
     app.globalData.posts.forEach(item => {
       if(item.id == pid) post = item;
     });
@@ -26,7 +28,8 @@ Page({
 
     this.setData({
       title : post.title,
-      published_at : post.published_at_show
+      published_at : post.published_at_show,
+      tags : post.tags
     });
 
     var mobiledoc = JSON.parse(post.mobiledoc);

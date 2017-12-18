@@ -1,5 +1,8 @@
-// pages/scescase/scescase.js
-// var base64 = require("../images/base64");
+/**
+ * pages/scescase/scescase.js
+ * 成功案例， tag: story
+ */
+
 Page({
 
   /**
@@ -8,28 +11,8 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    dmdata: [
-      {
-        title: '毕马威助中国中车成功完成海外收购', desc: '国企走出去之一', icon: '../../materials/case_o.png',
-        url: '../pptreport/pptreport', tags: ['国企','海外收购','制造业']
-      },
-      {
-        title: '响应一带一路，毕马威助客户成功海外收购', desc: '国企走出去之二', icon: '../../materials/case_b.png',
-        url: '../pptreport/pptreport', tags: ['国企','海外收购','建筑行业']
-      },
-      {
-        title: '为国有药企提供延续性服务', desc: '国企走出去之三', icon: '../../materials/case_r.png',
-        url: '../pptreport/pptreport', tags: ['国企','合规服务','医药行业']
-      },
-      {
-        title: '毕马威助力欧洲零售巨头进驻中国市场', desc: '海外本土化之一', icon: '../../materials/case_g.png',
-        url: '../pptreport/pptreport', tags: ['外资','本土化','零售业']
-      },
-      {
-        title: '毕马威助汇丰银行完成银行完成数字化系统搭建', desc: '海外本土化之二', icon: '../../materials/case_b.png',
-        url: '../pptreport/pptreport', tags: ['外资','数字化服务','金融业']
-      }
-    ]
+    loading: true,
+    results: []
   },
 
   showInput: function () {
@@ -70,15 +53,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var that = this;
 
     wx.setNavigationBarTitle({
       title: '成功案例'
     });
 
-    this.setData({
-      list: this.data.dmdata
+    var app = getApp();
+    var that = this;
+
+    wx.request({
+      url: 'https://ipintu.com/blog/posts/story/1',
+      success: function(res) {
+        console.log(res.data);
+        res.data.posts.forEach(item => {
+          item.published_at_show = item.published_at.split('T')[0]
+        });
+
+        that.setData({loading: false, results: res.data.posts});
+        // 缓存起来
+        app.globalData.posts = res.data.posts;
+      },
+      fail: function(res) {},
+      complete: function(res) {},
     });
+
 
   },
 
@@ -93,7 +91,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var app = getApp();
+    // console.log(this.data.results);
+    app.globalData.posts = this.data.results;
   },
 
   /**

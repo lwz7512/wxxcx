@@ -1,5 +1,7 @@
-var base64 = require("../images/base64");
-
+/**
+ * pages/index/index.js
+ * 行业报告，tag: report
+ */
 Page({
 
   data: {
@@ -8,10 +10,6 @@ Page({
   },
 
   onLoad: function () {
-    var app = getApp();
-    console.log(app);
-    var that = this;
-
     wx.setNavigationBarTitle({
       title: '行业报告'
     });
@@ -20,8 +18,11 @@ Page({
       withShareTicket: true
     });
 
+    var app = getApp();
+    var that = this;
+
     wx.request({
-      url: 'https://ipintu.com/blog/posts',
+      url: 'https://ipintu.com/blog/posts/report/1',
       success: function(res) {
         console.log(res.data);
         res.data.posts.forEach(item => {
@@ -35,7 +36,6 @@ Page({
       fail: function(res) {},
       complete: function(res) {},
     });
-
 
 
   },
@@ -57,6 +57,17 @@ Page({
       }
     }
   },
+
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+      var app = getApp();
+      // console.log(this.data.results);
+      app.globalData.posts = this.data.results;
+    },
+
 
 
 });

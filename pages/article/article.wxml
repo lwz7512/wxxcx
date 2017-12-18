@@ -1,54 +1,17 @@
 <!-- // 引入模板 -->
 <import src="../../wxParse/wxParse.wxml"/>
-<!-- //这里data中article为bindName -->
 
 <view class="page">
   <view class="page__hd">
     <view class="page__title">{{title}}</view>
     <view class='line'></view>
     <view class="page__desc">{{published_at}}</view>
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-  </view>
-  <!-- <view class='intro'>Abstract: Ever since China adopted the Cybersecurity Law in November 2016, questions have been raised as to the security requirements on overseas data transfer. </view> -->
-  <!-- <view class="page__bd">
-    <view class="weui-article">
-      <view class="weui-article__section">
-
-        <view class="weui-article__section">
-
-          <view class="weui-article__p">
-            Ever since China adopted the Cybersecurity Law in November 2016, questions have been raised as to the security requirements on overseas data transfer. A few aspects of the security assessment, for example, were unclear such as which government body or
-            department is responsible for the security assessment? Which organisations are required to be assessed? What is the scope of the assessment?
-          </view>
-
-          <div class="weui-article__p">
-            <image class="weui-article__img" src="../../materials/Snip20171128_7.png" mode="aspectFit" style="height: 180px;" />
-          </div>
-        </view>
-        <view class="weui-article__section">
-          <view class="weui-article__h2">1. Functional departments:</view>
-          <view class="weui-article__p">
-            China’s cyberspace administration bodies are responsible for arrangement and coordination whereas the industry authorities / regulatory bodies are responsible for execution.
-          </view>
-
-          <view class="weui-article__h2">2. Key assessment areas:</view>
-          <view class='weui-article__p'>
-            • Necessity of the transfer of the data
-          </view>
-          <view class='weui-article__p'>
-            • Involvement of personal information: the amount, scope, type, level of sensitivity, and whether the transfer has been authorised by the personal information subject
-          </view>
-          <view class='weui-article__p'>
-            • Involvement of critical data: the amount, scope, type and level of sensitivity
-          </view>
-          <view class='weui-article__p'>
-            • The intended recipient’s security measures, capabilities and, competence, and the cybersecurity environment of the country and region where the recipient is located
-          </view>
-          <view class='weui-article__p'>
-            • Unauthorised data disclosure, modification or even damage risk during overseas transfer or re-transfer • Whether the transfer and aggregation of data can lead to national security risks, or harm public and personal legal interests
-          </view>
-        </view>
+    <view class="weui-media-box__desc">
+      <view class="weui-badge" wx:for="{{tags}}" wx:for-item="t" >
+        {{t.name}}
       </view>
     </view>
-  </view> -->
+    <!-- //这里data中article为bindName -->
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
 </view>

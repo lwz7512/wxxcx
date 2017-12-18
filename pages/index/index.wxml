@@ -32,6 +32,11 @@
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-media-box__title">{{item.title}}</view>
                         <view class="weui-media-box__desc">{{item.published_at_show}}</view>
+                        <view class="weui-media-box__desc">
+                          <view class="weui-badge" wx:for="{{item.tags}}" wx:for-item="t" wx:if="{{t.name!='report'}}">
+                            {{t.name}}
+                          </view>
+                        </view>
                     </view>
                 </navigator>
             </view>

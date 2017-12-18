@@ -6,3 +6,7 @@
 .weui-media-box__desc {
   margin-top: 4px;
 }
+
+.weui-badge {
+  margin-right: 5px;
+}
