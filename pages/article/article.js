@@ -6,7 +6,9 @@ Page({
   data: {
     title : '',
     published_at : '',
-    tags: []
+    tags: [],
+    has_video : false,
+    src: ''  // video file source
   },
 
   /**
@@ -16,6 +18,9 @@ Page({
     var app = getApp();
     var pid = options.id;
     var post = {title:''};
+    var page = this;
+    // page.videoContext = wx.createVideoContext('myVideo');
+
     // 找出对应的帖子
     app.globalData.posts.forEach(item => {
       if(item.id == pid) post = item;
@@ -48,6 +53,18 @@ Page({
     var mdParser = app.globalData.wxParser;
     mdParser.wxParse('article', 'md', markdown, this, 5);
 
+
+    // FIXME, 暂时用摘要字段保存视频地址
+    if(!post.custom_excerpt) return;
+    if(post.custom_excerpt.indexOf('http')<0) return;
+    // 显示视频控件
+    page.setData({has_video: true});
+    // src: 'http://dnld.runbytech.com/case.02.mp4',
+    setTimeout(function(){
+      page.setData({
+        src: post.custom_excerpt,
+      });
+    }, 1000);
   },
 
   /**

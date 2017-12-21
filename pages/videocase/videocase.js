@@ -19,16 +19,16 @@ Page({
 
     if (options.id=='1') {
       setTimeout(function(){
-        page.setData({ 
-          src: 'http://dnld.runbytech.com/case.01.mp4', 
+        page.setData({
+          src: 'http://dnld.runbytech.com/case.01.mp4',
           desc: '[发现·实现]成功案例分享之银行转型服务'
         });
       }, 1000);
       title = '[发现·实现]成功案例分享一';
     }else{
       setTimeout(function(){
-        page.setData({ 
-          src: 'http://dnld.runbytech.com/case.02.mp4', 
+        page.setData({
+          src: 'http://dnld.runbytech.com/case.02.mp4',
           desc: '[发现·实现]成功案例分享之家电售后服务数字化'
         });
       }, 1000);
@@ -39,7 +39,7 @@ Page({
       title: title
     });
 
-    
+
 
 
   },
