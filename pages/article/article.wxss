@@ -70,5 +70,47 @@ video {
   justify-content: center;
 }
 
+/* hexo blog article entry */
+.article-entry .highlight {
+  background: #2d2d2d;
+  margin: 0 -20px;
+  padding: 15px 20px;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px 0;
+  overflow: auto;
+  color: #ccc;
+  line-height: 22.400000000000002px;
+}
+
+.article-entry .highlight table {
+  margin: 0;
+  width: auto;
+}
+.article-entry .highlight td {
+  border: none;
+  padding: 0;
+}
+
+.article-entry .line {
+  background: none;
+}
+
+.wxParse-tr {
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+}
+
+.wxParse-th, .wxParse-td {
+  flex: none;
+  border-left: none;
+}
+
+
+
+
+
+
 
 /**/

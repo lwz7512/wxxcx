@@ -12,6 +12,12 @@ App({
     this.globalData.wxParser = WxParse;
   },
   globalData: {
-    userInfo: null
+    categories: null,
+    posts: null,
+    userInfo: null,
+    postsURL: 'https://ipintu.com/api/posts/entities.json',
+    postBaseURL: 'https://ipintu.com/api/posts',
+    categoriesURL: 'https://ipintu.com/api/categories/entities.json'
   }
+
 })

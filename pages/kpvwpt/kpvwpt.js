@@ -62,27 +62,30 @@ Page({
     var app = getApp();
     var that = this;
 
-    wx.request({
-      url: 'https://ipintu.com/blog/posts/insight/1',
-      success: function(res) {
-        // console.log(res.data);
-        res.data.posts.forEach(item => {
-          item.published_at_show = item.published_at.split('T')[0]
-        });
+    if(app.globalData.posts || app.globalData.categories){
+      this.setData({loading: false});
+    }else{
+      return; // 数据没有准备好，不继续了
+    }
 
-        that.setData({
-          loading: false,
-          results: res.data.posts,
-          results_raw: res.data.posts
-        });
-
-        // 缓存起来
-        app.globalData.posts = res.data.posts;
-      },
-      fail: function(res) {},
-      complete: function(res) {},
+    var postsID = [];
+    var categories = app.globalData.categories;
+    for (var key in categories) {
+      // 获取观点
+      if(categories[key]['name']=='insight') postsID = categories[key]['posts'];
+    }
+    var insights = []; // these are really insights
+    console.log(postsID);
+    postsID.forEach(id => {
+      console.log(id);
+      console.log(app.globalData.posts);
+      console.log(app.globalData.posts[id]);
+      insights.push(app.globalData.posts[id]);
     });
+    console.log(insights);
+    that.setData({loading: false, results: insights});
 
+    
 
   },
 
@@ -97,9 +100,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var app = getApp();
-    // console.log(this.data.results);
-    app.globalData.posts = this.data.results;
+
   },
 
   /**

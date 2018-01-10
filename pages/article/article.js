@@ -21,11 +21,20 @@ Page({
     var page = this;
     // page.videoContext = wx.createVideoContext('myVideo');
 
-    // 找出对应的帖子
-    app.globalData.posts.forEach(item => {
-      if(item.id == pid) post = item;
+    wx.request({
+      url: app.globalData.postBaseURL+'/'+pid+'/content.json',
+      success: function(res){
+        console.log(res);
+        //在使用的View中引入WxParse模块
+        var mdParser = app.globalData.wxParser;
+        mdParser.wxParse('article', 'html', res.data.content, page, 5);
+      }
     });
-    // console.log(app.globalData.posts);
+
+    // 找出对应的帖子
+    for (var key in app.globalData.posts) {
+      if(key == pid) post = app.globalData.posts[key];
+    }
 
     wx.setNavigationBarTitle({
       title: post.title
@@ -37,34 +46,21 @@ Page({
       tags : post.tags
     });
 
-    var mobiledoc = JSON.parse(post.mobiledoc);
-    var markdown = mobiledoc.cards[0][1].markdown;
-    // console.log(markdown);
-    /**
-    * WxParse.wxParse(bindName , type, data, target,imagePadding)
-    * 1.bindName绑定的数据名(必填)
-    * 2.type可以为html或者md(必填)
-    * 3.data为传入的具体数据(必填)
-    * 4.target为Page对象,一般为this(必填)
-    * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
-    */
-    // var that = this;
-    //在使用的View中引入WxParse模块
-    var mdParser = app.globalData.wxParser;
-    mdParser.wxParse('article', 'md', markdown, this, 5);
 
+  
 
     // FIXME, 暂时用摘要字段保存视频地址
-    if(!post.custom_excerpt) return;
-    if(post.custom_excerpt.indexOf('http')<0) return;
+    // if(!post.custom_excerpt) return;
+    // if(post.custom_excerpt.indexOf('http')<0) return;
     // 显示视频控件
-    page.setData({has_video: true});
+    // page.setData({has_video: true});
     // src: 'http://dnld.runbytech.com/case.02.mp4',
-    setTimeout(function(){
-      page.setData({
-        src: post.custom_excerpt,
-      });
-    }, 1000);
+    // setTimeout(function(){
+    //   page.setData({
+    //     src: post.custom_excerpt,
+    //   });
+    // }, 1000);
+
   },
 
   /**

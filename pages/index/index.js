@@ -64,28 +64,49 @@ Page({
     var app = getApp();
     var that = this;
 
-    wx.request({
-      url: 'https://ipintu.com/blog/posts/report/1',
-      success: function(res) {
+    var rt = wx.request({
+      url: app.globalData.postsURL,
+      success: function(res){
         console.log(res.data);
-        res.data.posts.forEach(item => {
-          item.published_at_show = item.published_at.split('T')[0]
-        });
-
-        that.setData({
-          loading: false,
-          results: res.data.posts,
-          results_raw: res.data.posts
-        });
+        for (let key in res.data) {
+          // console.log(res.data[key]);
+          let item = res.data[key];
+          item.published_at_show = item.date.split('T')[0]
+        }
         // 缓存起来
-        app.globalData.posts = res.data.posts;
-      },
-      fail: function(res) {},
-      complete: function(res) {},
+        app.globalData.posts = res.data;
+
+        rt.then();
+
+      }
     });
 
+    rt.then =  function(){
+      console.log('then called!');
+      wx.request({
+        url: app.globalData.categoriesURL,
+        success: function(res){
+          console.log(res);
+          // 缓存起来
+          app.globalData.categories = res.data;
 
-  },
+          var postsID = [];
+          for (var key in res.data) {
+            // 获取报告
+            if(res.data[key]['name']=='report') postsID = res.data[key]['posts'];
+          }
+          var reports = []; // these are really reports
+          postsID.forEach(id => {
+            reports.push(app.globalData.posts[id]);
+          });
+
+          that.setData({loading: false,results: reports});
+        } //end of success
+      });
+    };
+
+
+  }, // end of onLoad
 
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
@@ -110,9 +131,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var app = getApp();
-    // console.log(this.data.results);
-    app.globalData.posts = this.data.results;
+
   },
 
 

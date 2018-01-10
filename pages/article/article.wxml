@@ -17,6 +17,8 @@
       </view>
     </view>
     <!-- //这里data中article为bindName -->
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    <view class="article-entry">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </view>
   </view>
 </view>

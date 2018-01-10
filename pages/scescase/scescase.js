@@ -63,27 +63,28 @@ Page({
     var app = getApp();
     var that = this;
 
-    wx.request({
-      url: 'https://ipintu.com/blog/posts/story/1',
-      success: function(res) {
-        // console.log(res.data);
-        res.data.posts.forEach(item => {
-          item.published_at_show = item.published_at.split('T')[0]
-        });
-
-        that.setData({
-          loading: false,
-          results: res.data.posts,
-          results_raw: res.data.posts
-        });
-
-        // 缓存起来
-        app.globalData.posts = res.data.posts;
-      },
-      fail: function(res) {},
-      complete: function(res) {},
+    if(app.globalData.posts || app.globalData.categories){
+      this.setData({loading: false});
+    }else{
+      return; // 数据没有准备好，不继续了
+    }
+    console.log('..........');
+    var postsID = [];
+    var categories = app.globalData.categories;
+    for (var key in categories) {
+      // 获取案例
+      if(categories[key]['name']=='story') postsID = categories[key]['posts'];
+    }
+    var stories = []; // these are really stories
+    console.log(postsID);
+    postsID.forEach(id => {
+      stories.push(app.globalData.posts[id]);
     });
 
+    that.setData({loading: false,results: stories});
+
+
+  
 
   },
 
@@ -98,9 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var app = getApp();
-    // console.log(this.data.results);
-    app.globalData.posts = this.data.results;
+
   },
 
   /**
