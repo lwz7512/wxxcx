@@ -1,49 +1,38 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/article/article",
-    "pages/scescase/scescase",
-    "pages/kpvwpt/kpvwpt",
-    "pages/contactus/contactus",
-    "pages/pptreport/pptreport",
-    "pages/pptreport2/pptreport2",
-    "pages/videocase/videocase"
+    "pages/class/class",
+    "pages/mine/mine"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#005EB8",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "backgroundColor": "#000",
+    "backgroundColor": "#FFF",
     "color": "#666",
-    "selectedColor": "#FFF",
+    "selectedColor": "#158AFA",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "行业报告",
-        "selectedIconPath": "images/k_inrept_slct.png",
-        "iconPath": "images/k_inrept.png"
+        "text": "推荐",
+        "selectedIconPath": "images/t_rcmd_slct.png",
+        "iconPath": "images/t_rcmd.png"
       },
       {
-        "pagePath": "pages/scescase/scescase",
-        "text": "成功案例",
-        "selectedIconPath": "images/k_sucs_slct.png",
-        "iconPath": "images/k_sucs.png"
+        "pagePath": "pages/class/class",
+        "text": "课堂",
+        "selectedIconPath": "images/t_class_slct.png",
+        "iconPath": "images/t_class.png"
       },
       {
-        "pagePath": "pages/kpvwpt/kpvwpt",
-        "text": "毕马威观点",
-        "selectedIconPath": "images/k_vwpt_slct.png",
-        "iconPath": "images/k_vwpt.png"
-      },
-      {
-        "pagePath": "pages/contactus/contactus",
-        "text": "联系我们",
-        "selectedIconPath": "images/k_ctct_slct.png",
-        "iconPath": "images/k_ctct.png"
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "selectedIconPath": "images/t_mine_slct.png",
+        "iconPath": "images/t_mine.png"
       }
     ]
   }

@@ -1,53 +1,50 @@
 <!--index.wxml-->
-<view class="page">
-    <!-- <view class="page__hd">
-        <view class="page__title">Panel</view>
-        <view class="page__desc">面板</view>
-    </view> -->
-    <view class="page__bd">
-        <view class="weui-search-bar">
-            <view class="weui-search-bar__form">
-                <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-                        <icon type="clear" size="14"></icon>
-                    </view>
+<view class="page-body">
+  <!-- swiper section -->
+  <view class="page-section page-section-spacing-for-swiper">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
+         duration="{{duration}}" next-margin="30px" previous-margin="30px">
+        <block wx:for="{{imgUrls}}">
+          <swiper-item>
+            <!-- TODO, add card... -->
+            <view class="card">
+              <view class="card-body-shadow">
+                <view class="image-roundcorner">
+                  <image src="{{item}}" class="slide-image header-img"/>
+                  <text class="fa icon-star-empty fa-align-fix float-right" />
                 </view>
-                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-                    <icon class="weui-icon-search" type="search" size="14"></icon>
-                    <view class="weui-search-bar__text">搜索行业报告</view>
-                </label>
+                <view class="card-body-white">
+                  <!-- 政策法规解读 -->
+                  <text class="title">TEST 3</text>
+                  <text class="price">免费</text>
+                  <view class="highlight">
+                    <text class="fa icon-play-circled fa-align-fix" />
+                    <text class="hilight-txt">本期看点: 如何解读政策法规</text>
+                  </view>
+                  <view class="stars">
+                    <text class="fa icon-star fa-align-fix" />
+                    <text class="fa icon-star fa-align-fix" />
+                    <text class="fa icon-star fa-align-fix" />
+                    <text class="fa icon-star fa-align-fix" />
+                    <text class="fa icon-star-empty fa-align-fix" />
+                  </view>
+                  <view class="persons">
+                    <text class="fa icon-user-circle fa-align-fix blue" />
+                    <text class="blue person-txt">3100</text>
+                    <text class="learning person-txt">人正在学习</text>
+                  </view>
+
+                  <view class="weui-btn-area">
+                    <button class="weui-btn" type="primary" bindtap="onConfirm">我要学习</button>
+                  </view>
+                </view>
+              </view>
             </view>
-            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-        </view>
-        <!-- 列表 -->
-        <view class="weui-panel weui-panel_access">
-            <!-- <view class="weui-panel__hd">图文组合列表</view> -->
-            <view class="weui-panel__bd">
-                <navigator wx:for="{{results}}" url="../article/article?id={{item.post_id}}" 
-                  class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" >
-                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                        <image class="weui-media-box__thumb" src="{{item.postImage}}" />
-                    </view>
-                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title">{{item.title}}</view>
-                        <view class="weui-media-box__desc">{{item.published_at_show}}</view>
-                        <view class="weui-media-box__desc">
-                          <view class="weui-badge" wx:for="{{item.tags}}" wx:for-item="t" wx:if="{{t.name!='report'}}">
-                            {{t.name}}
-                          </view>
-                        </view>
-                    </view>
-                </navigator>
-            </view>
-        </view>
-        <!-- end of panel -->
-        <view class="weui-loadmore" wx:if="{{loading}}">
-            <view class="weui-loading"></view>
-            <view class="weui-loadmore__tips">正在加载</view>
-        </view>
-    </view>
-    <!-- end of page__bd -->
+          </swiper-item>
+        </block>
+      </swiper>
+  </view>
+  <!--  -->
+
+  <!--  -->
 </view>
-<!-- end of page -->

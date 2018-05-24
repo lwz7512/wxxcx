@@ -1,112 +1,65 @@
-/**
- * pages/index/index.js
- * 行业报告，tag: report
- */
+//index.js
+//获取应用实例
+const app = getApp()
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    inputShowed: false,
-    inputVal: "",
-    loading: true,
-    results: [],
-    results_raw: []
+    // motto: 'Hello World',
+    // userInfo: {},
+    // hasUserInfo: false,
+    imgUrls: [
+      '../../images/header.png',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ],
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000
   },
-
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false,
-      results: this.data.results_raw // restore original list
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: "",
-      results: this.data.results_raw // restore original list
-    });
-  },
-  inputTyping: function (e) {
-    var raw = this.data.results_raw;
-    // console.log(this.data.inputVal);
-    var key = e.detail.value;
-    var searched = [];
-    for (var item of raw) {
-      item.tags.forEach(tag => {
-        if(searched.indexOf(item)>-1) return;
-        if(tag.name.indexOf(key)>-1) searched.push(item);
-      });
-    }
-    this.setData({
-      results: searched,
-      inputVal: e.detail.value
-    });
-  },
-
-
+  //事件处理函数
+  // bindViewTap: function() {
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
   onLoad: function () {
-    wx.setNavigationBarTitle({
-      title: '行业报告'
-    });
+    // if (app.globalData.userInfo) {
+    //   this.setData({
+    //     userInfo: app.globalData.userInfo,
+    //     hasUserInfo: true
+    //   })
+    // } else if (this.data.canIUse){
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
+    // } else {
+    //   // 在没有 open-type=getUserInfo 版本的兼容处理
+    //   wx.getUserInfo({
+    //     success: res => {
+    //       app.globalData.userInfo = res.userInfo
+    //       this.setData({
+    //         userInfo: res.userInfo,
+    //         hasUserInfo: true
+    //       })
+    //     }
+    //   })
+    // }
+  },
+  getUserInfo: function(e) {
+    // console.log(e)
+    // app.globalData.userInfo = e.detail.userInfo
+    // this.setData({
+    //   userInfo: e.detail.userInfo,
+    //   hasUserInfo: true
+    // })
+  },
 
-    wx.showShareMenu({
-      withShareTicket: true
-    });
-
-    var app = getApp();
-    var that = this;
-
-    var rt = wx.request({
-      url: app.globalData.postsURL,
-      success: function(res){
-        console.log(res.data);
-        for (let key in res.data) {
-          // console.log(res.data[key]);
-          let item = res.data[key];
-          item.published_at_show = item.date.split('T')[0]
-        }
-        // 缓存起来
-        app.globalData.posts = res.data;
-
-        rt.then();
-
-      }
-    });
-
-    rt.then =  function(){
-      console.log('then called!');
-      wx.request({
-        url: app.globalData.categoriesURL,
-        success: function(res){
-          console.log(res);
-          // 缓存起来
-          app.globalData.categories = res.data;
-
-          var postsID = [];
-          for (var key in res.data) {
-            // 获取报告
-            if(res.data[key]['name']=='report') postsID = res.data[key]['posts'];
-          }
-          var reports = []; // these are really reports
-          postsID.forEach(id => {
-            reports.push(app.globalData.posts[id]);
-          });
-
-          that.setData({loading: false,results: reports});
-        } //end of success
-      });
-    };
-
-
-  }, // end of onLoad
 
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
@@ -114,7 +67,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '程序猿情报',
+      title: '码农情报',
       path: 'pages/index/index',
       // path: '/page/user?id=123',
       success: function(res) {
@@ -127,13 +80,4 @@ Page({
   },
 
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-
-
-});
+})
