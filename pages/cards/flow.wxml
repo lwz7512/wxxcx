@@ -1,0 +1,92 @@
+<!--pages/cards/flow.wxml-->
+<view class="page">
+  <view class="page__bd" >
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <!-- cards -->
+    <scroll-view scroll-y style="height: {{windowHeight}}px;" >
+
+    <view class="card">
+      <view class="card-body-shadow">
+        <view class="image-roundcorner">
+          <image src="../../images/header.png" class="slide-image header-img"/>
+          <text class="right-blue-flag">3100人正在学习</text>
+          <text class="right-updt-txt">每周三更新</text>
+        </view>
+        <view class="card-body-white">
+          <view class="footer ">
+            <view class="footer-title">政策法规解读第一课</view>
+            <view class="footer-tags ">
+              <text class="highlight" >本期看点： 如何解读政策法规?</text>
+            </view>
+            <view class="price">
+              <text >699元/9期</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-body-shadow">
+        <view class="image-roundcorner">
+          <image src="../../images/header.png" class="slide-image header-img"/>
+          <text class="right-blue-flag">3100人正在学习</text>
+          <text class="right-updt-txt">每周三更新</text>
+        </view>
+        <view class="card-body-white">
+          <view class="footer ">
+            <view class="footer-title">政策法规解读第一课</view>
+            <view class="footer-tags ">
+              <text class="highlight" >本期看点： 如何解读政策法规?</text>
+            </view>
+            <view class="price">
+              <text >699元/9期</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-body-shadow">
+        <view class="image-roundcorner">
+          <image src="../../images/header.png" class="slide-image header-img"/>
+          <text class="right-blue-flag">3100人正在学习</text>
+          <text class="right-updt-txt">每周三更新</text>
+        </view>
+        <view class="card-body-white">
+          <view class="footer ">
+            <view class="footer-title">政策法规解读第一课</view>
+            <view class="footer-tags ">
+              <text class="highlight" >本期看点： 如何解读政策法规?</text>
+            </view>
+            <view class="price">
+              <text >699元/9期</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    </scroll-view>
+
+
+  </view>
+  <!-- <text >hello...</text> -->
+
+</view>
