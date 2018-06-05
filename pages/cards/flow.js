@@ -66,6 +66,12 @@ Page({
     this.setData({windowHeight: res.windowHeight-48});
   },
 
+  openDetailPage: function(evt) {
+    wx.navigateTo({
+      url: '/pages/cards/detail'
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

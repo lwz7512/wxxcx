@@ -20,7 +20,7 @@
     <!-- cards -->
     <scroll-view scroll-y style="height: {{windowHeight}}px;" >
 
-    <view class="card">
+    <view class="card" bindtap="openDetailPage">
       <view class="card-body-shadow">
         <view class="image-roundcorner">
           <image src="../../images/header.png" class="slide-image header-img"/>
@@ -41,7 +41,7 @@
       </view>
     </view>
 
-    <view class="card">
+    <view class="card" bindtap="openDetailPage">
       <view class="card-body-shadow">
         <view class="image-roundcorner">
           <image src="../../images/header.png" class="slide-image header-img"/>
@@ -62,7 +62,7 @@
       </view>
     </view>
 
-    <view class="card">
+    <view class="card" bindtap="openDetailPage">
       <view class="card-body-shadow">
         <view class="image-roundcorner">
           <image src="../../images/header.png" class="slide-image header-img"/>

@@ -4,7 +4,8 @@
     "pages/cards/flow",
     "pages/logs/logs",
     "pages/class/class",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/cards/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

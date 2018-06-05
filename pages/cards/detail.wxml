@@ -1,0 +1,101 @@
+<!--pages/cards/detail.wxml-->
+<view class="header-card">
+  <view class="image-roundcorner">
+    <image src="../../images/header.png" class="header-img"/>
+  </view>
+  <view class="card-body-white">
+    <text class="speaker">主讲人</text>
+    <view class="speaker-intro">
+      <view class="avatar">
+        <image src="../../images/user-unlogin.png" class="avt-img"/>
+      </view>
+      <view class="text-rows">
+        <view class="user-row">
+          <text class="user-name">Philip</text>
+          <text class="attenders">323人购买</text>
+        </view>
+        <view class="title-row">
+          毕马威咨询合伙人
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-y style="height: {{windowHeight}}px; margin-top: 10px;" >
+  <!-- topic intro -->
+  <view class="header-card ">
+    <view class="card-title">
+      专题介绍
+    </view>
+    <view class="intro">
+      <text class="intro-txt">
+        如何解读政策法规？随着区块链泡沫消退，行业从业者纷纷寻求区块链应用落地的方向，在公链目前落地困难的情况下，以联盟的形式与垂直行业。。。
+      </text>
+    </view>
+  </view>
+  <!-- directory -->
+  <view class="header-card ">
+    <view class="card-title">
+      目录
+    </view>
+    <view class="text-rows gap">
+      <view class="item">
+        <text class="fa icon-play-circled"></text>
+        <text class="section-title">1. 一小节视频标题</text>
+      </view>
+      <view class="item">
+        <text class="fa icon-play-circled"></text>
+        <text class="section-title">2. 一小节视频标题</text>
+      </view>
+      <view class="item">
+        <text class="fa icon-play-circled"></text>
+        <text class="section-title">3. 一小节视频标题</text>
+      </view>
+    </view>
+  </view>
+  <!-- reward -->
+  <view class="header-card">
+    <view class="buttons">
+      <text class="blue-outline">试听</text>
+      <text class="blue-outline">咨询</text>
+      <text class="blue-outline">购买</text>
+      <text class="blue-outline">分享</text>
+    </view>
+    <view class="long-btn">
+      <text class="orange">内容很棒 激励一下</text>
+    </view>
+    <view class="thumbup-rewd">
+      <view class="one-column"></view>
+      <view class="one-column">
+        <view class="round-circle-btn">
+          <text class="fa icon-thumbs-up-alt"></text>
+        </view>
+      </view>
+      <view class="one-column">
+        <view class="round-circle-btn">
+          <text class="fa icon-money"></text>
+        </view>
+      </view>
+      <view class="one-column"></view>
+    </view>
+    <view class="thumbup-rewd gap">
+      <view class="one-column"></view>
+      <view class="one-column txt">点赞</view>
+      <view class="one-column txt">打赏</view>
+      <view class="one-column"></view>
+    </view>
+  </view>
+  <!-- extend read -->
+  <view class="header-card gap">
+    <view class="card-title">
+      延展学习
+    </view>
+  </view>
+</scroll-view>
+
+
+
+
+
+<!-- ... -->
