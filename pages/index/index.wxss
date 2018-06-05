@@ -3,7 +3,8 @@
 
 
 swiper {
-  height: 450px;
+  /* height: 450px; */
+  height: 410px; /* shorten height @2018/05/30 */
 }
 
 .page-section-spacing-for-swiper{
@@ -202,5 +203,8 @@ button[type=primary]:active {
   font-size: 16px;
 }
 
-
+.current-slide {
+  color: #888;
+  font-size: 14px;
+}
 /* end of card */

@@ -3,7 +3,8 @@
   <!-- swiper section -->
   <view class="page-section page-section-spacing-for-swiper">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
-         duration="{{duration}}" next-margin="30px" previous-margin="30px">
+         duration="{{duration}}" next-margin="30px" previous-margin="30px"
+         bindchange="onSwiperChange">
         <block wx:for="{{imgUrls}}">
           <swiper-item>
             <!-- TODO, add card... -->
@@ -35,7 +36,7 @@
                   </view>
 
                   <view class="weui-btn-area">
-                    <button class="weui-btn" type="primary" bindtap="onConfirm">我要学习</button>
+                    <button class="weui-btn" type="primary" bindtap="iWantLearn">我要学习</button>
                   </view>
                 </view>
               </view>
@@ -45,6 +46,8 @@
       </swiper>
   </view>
   <!--  -->
-
+  <view class="page-section_center">
+    <text class="current-slide">{{currentIndex+1}}/{{imgUrls.length}}</text>
+  </view>
   <!--  -->
 </view>

@@ -1,2 +1,40 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<!-- <view class="container">
+  <view class="userinfo">
+      <image
+          class="userinfo-avatar"
+          src="{{logged ? userInfo.avatarUrl : '../../images/user-unlogin.png'}}"
+          background-size="cover"/>
+      <view>
+          <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+            点击登录
+          </button>
+          <text class="userinfo-nickname" wx:else>{{userInfo.nickName}}</text>
+      </view>
+  </view>
+</view>
+<view class="container footer">
+  <button type="primary" bindtap="donate" data-item="{{1}}">支付 ￥0.01</button>
+  <text class="hint">仅供体验支付流程，打赏不会对功能有任何影响。</text>
+</view> -->
+
+
+<view class="container">
+  <view class="header">
+    <view class="group">
+      <image src="{{logged ? userInfo.avatarUrl : '../../images/user-unlogin.png'}}" />
+      <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+        点击登录
+      </button>
+      <text class="name" wx:else>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="price-list">
+    <view class="item" wx:for="{{prices}}" wx:key="item" data-item="{{item}}" bindtap="selectItem">
+      <view class="price-box {{selected==item?'active':''}}">
+        <em><text class="price">{{item}}</text>  分</em>
+      </view>
+    </view>
+  </view>
+</view>

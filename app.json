@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/cards/flow",
     "pages/logs/logs",
     "pages/class/class",
     "pages/mine/mine"
