@@ -8,7 +8,7 @@
         <block wx:for="{{slides}}">
           <swiper-item>
             <!-- add card... -->
-            <view class="card">
+            <view class="card" bindtap="iWantLearn" data-id="{{item.id}}">
               <view class="card-body-shadow">
                 <view class="image-roundcorner">
                   <image src="{{item.head_img_url}}" class="slide-image header-img"/>
@@ -37,8 +37,7 @@
                   </view>
 
                   <view class="weui-btn-area">
-                    <button class="weui-btn" type="primary" bindtap="iWantLearn" data-id="{{item.id}}">
-                      我要学习</button>
+                    <button class="weui-btn" type="primary" >我要学习</button>
                   </view>
                 </view>
               </view>
@@ -49,7 +48,7 @@
   </view>
   <!--  -->
   <view class="page-section_center">
-    <text class="current-slide">{{currentIndex+1}}/{{imgUrls.length}}</text>
+    <text class="current-slide">{{currentIndex+1}}/{{slides.length}}</text>
   </view>
   <!--  -->
 </view>

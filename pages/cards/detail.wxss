@@ -148,7 +148,22 @@ video {
   font-size: 16px;
   border: 1px solid #56B5FC;
   padding: 4px 12px;
-  /* margin-right: 20px; */
+}
+
+button.blue-outline {
+  margin: 0;
+  font-size: 16px;
+  border-radius: 0;
+  line-height: 1.5;
+  background-color: #FFF;
+}
+/* wow.... it's magical to remove the button border @2018/06/07 */
+button.blue-outline::after {
+  border: none;
+}
+
+button.blue-outline.button-hover {
+  background-color: #CCC;
 }
 
 .header-card .long-btn {

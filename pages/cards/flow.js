@@ -75,13 +75,16 @@ Page({
       data: {session_3rd: Session.get().session_3rd},
       success: function(res){
         console.log(res);
+        wx.hideLoading();
         that.setData({
           details: res.data.res.data,
           results: res.data.res.data.course_data
         });
       }
     });
-
+    wx.showLoading({
+      title: '加载中',
+    });
   },
 
   openDetailPage: function(evt) {

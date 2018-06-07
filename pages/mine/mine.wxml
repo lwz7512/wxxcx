@@ -1,40 +1,48 @@
 <!--pages/mine/mine.wxml-->
-<!-- <view class="container">
-  <view class="userinfo">
-      <image
-          class="userinfo-avatar"
-          src="{{logged ? userInfo.avatarUrl : '../../images/user-unlogin.png'}}"
-          background-size="cover"/>
-      <view>
-          <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
-            点击登录
-          </button>
-          <text class="userinfo-nickname" wx:else>{{userInfo.nickName}}</text>
-      </view>
-  </view>
-</view>
-<view class="container footer">
-  <button type="primary" bindtap="donate" data-item="{{1}}">支付 ￥0.01</button>
-  <text class="hint">仅供体验支付流程，打赏不会对功能有任何影响。</text>
-</view> -->
-
-
 <view class="container">
   <view class="header">
+    <image src="../../images/mine-cover.png" class="bgimage" />
     <view class="group">
-      <image src="{{logged ? userInfo.avatarUrl : '../../images/user-unlogin.png'}}" />
+      <image class="avatar" src="{{logged ? userInfo.avatarUrl : '../../images/user-unlogin.png'}}" />
       <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
         点击登录
       </button>
       <text class="name" wx:else>{{userInfo.nickName}}</text>
     </view>
   </view>
-  <view class="line"></view>
-  <view class="price-list">
-    <view class="item" wx:for="{{prices}}" wx:key="item" data-item="{{item}}" bindtap="selectItem">
-      <view class="price-box {{selected==item?'active':''}}">
-        <em><text class="price">{{item}}</text>  分</em>
-      </view>
-    </view>
+  <!-- <view class="weui-cells__title">带跳转的列表项</view> -->
+  <view class="weui-cells weui-cells_after-title">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">已购</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">我的收藏</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">学习之路</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
   </view>
+
+  <view class="weui-cells weui-cells_after-title">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">我的定制化</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">积分兑换</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">每日打卡</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">我的阅读</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+  </view>
+
 </view>

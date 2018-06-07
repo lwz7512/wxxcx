@@ -23,7 +23,7 @@
     <view class="card" bindtap="openDetailPage" wx:for="{{results}}" data-id="{{item.id}}">
       <view class="card-body-shadow">
         <view class="image-roundcorner">
-          <image src="{{details.head_img_url}}" class="slide-image header-img"/>
+          <image src="{{item.head_img_url}}" class="slide-image header-img"/>
           <text class="right-blue-flag">3100人正在学习</text>
           <text class="right-updt-txt">每周三更新</text>
         </view>

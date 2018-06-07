@@ -17,7 +17,7 @@ var config = {
         // 测试的请求地址，用于测试会话
         requestUrl: `${host}/education/user`,
 
-        prepayUrl: `${host}/education/course_pay`,
+        prepayUrl: `${host}/education/course_dashang`,
 
         paybackUrl: `${host}/education/payback`,
 

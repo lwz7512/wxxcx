@@ -81,6 +81,7 @@ swiper {
   margin: 10px;
   font-size: 18px;
   text-align: center;
+  height: 56px;
 }
 
 .card .price {
@@ -96,6 +97,7 @@ swiper {
   color: #999;
 
   justify-content: center;
+  height: 50px;
 }
 
 .card .fa-align-fix {

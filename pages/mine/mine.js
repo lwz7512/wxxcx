@@ -34,12 +34,13 @@ Page({
       var session = Session.get();
       // console.log(session);
       // 如果本地没有回话则重新登录
-      if(!session) return;
+      if(!session) return util.showSuccess('微信登录后使用');
 
       this.setData({userInfo: session.userinfo, logged: true});
 
     }).catch(() => {
       console.error('session expired!');
+      util.showSuccess('微信登录后使用');
     });
 
   },
@@ -95,6 +96,8 @@ Page({
             // cache userinfo & session...
             Session.set({userinfo: options.userInfo, session_3rd});
 
+            setTimeout(()=> that.switchToHome(), 100);
+
           }else{
             util.showModel('登录失败', {});
           }
@@ -105,71 +108,10 @@ Page({
 
   },
 
-
-  selectItem: function(event) {
-    var total = event.currentTarget.dataset.item;
-    var that = this;
-    that.setData({ selected: total });
-    this.donate(event);
-  },
-
-  donate: function(event) {
-    var that = this;
-
-    // var session = Session.get();
-    // console.log(session);
-    // 如果本地没有回话则重新登录
-    if(!this.data.logged){
-      util.showModel('登录后付款', {info: '需要用微信登录并允许获取用户信息!'});
-      this.setData({ selected: 0 });
-      return;
-    }
-
-    util.showBusy('发起付款...');
-    var total = event.currentTarget.dataset.item;
-
-    wx.request({
-      url: config.service.prepayUrl+'/'+ total,
-      method: 'GET',
-      data: {session_3rd: Session.get().session_3rd},// unit: cent
-      header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      success: function(res) {
-        console.log(res);
-        wx.hideToast();
-
-        if(res.data.meta.code !== 200) return util.showModel('支付失败', {});
-
-        var data = res.data.res.data;
-        console.log(data);
-
-        wx.requestPayment({
-          timeStamp: data.timeStamp,
-          nonceStr: data.nonceStr,
-          package: data.package,
-          signType: 'MD5',
-          paySign: data.paySign,
-          success:function(res){
-            wx.showToast({
-              title: '支付成功,感谢',
-              icon: 'success'
-            });
-          },
-          fail:function(res){
-            that.setData({ selected: 0 });
-            wx.showToast({
-              title: '已取消支付',
-              icon: 'success'
-            });
-          },
-          complete:function(res){
-            // cancel select..
-          }
-        });
-      }
-    });
-
+  switchToHome: function () {
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
   },
 
   /**

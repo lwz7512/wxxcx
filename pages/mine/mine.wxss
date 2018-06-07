@@ -1,7 +1,4 @@
 /* pages/mine/mine.wxss */
-page {
-  background-color: #fbf9fe;
-}
 
 .container {
   width: 100%;
@@ -11,85 +8,39 @@ page {
 .header {
   width: 100%;
   height: 320rpx;
-  border-radius: 50%;
-  background-color: #d55a4a;
-  margin-top: -160rpx;
+  /* border-radius: 50%; */
+  background-color: #FFF;
+  /* margin-top: -160rpx; */
   position: relative;
 }
 
 .header .group {
   width: 100%;
   position: absolute;
-  bottom: -200rpx;
+  margin-top: 40px;
   text-align: center;
 }
 
-.header image {
-  width: 196rpx;
-  height: 196rpx;
+.header .avatar {
+  width: 128rpx;
+  height: 128rpx;
   border-radius: 50%;
 }
 
 .header .name {
   width: 100%;
   display: inline-block;
-  margin-top: 30rpx;
-  color: #4e5b65;
+  margin-top: 10rpx;
+  color: #FFF;
 }
 
-.line {
-  display: block;
-  width: 600rpx;
-  margin: 0 auto;
-  height: 1px;
-  background-color: #dddddd;
-  margin-top: 300rpx;
-  margin-bottom: 100rpx;
-}
-
-.price-list {
-  padding: 0 15rpx;
-  text-align: center;
-  flex-direction: row;
-}
-
-.price-list .item {
-  float: left;
-  margin-right: 10rpx;
-  margin-left: 10rpx;
-  margin-bottom: 20rpx;
-  width: 220rpx;
-}
-
-.price-list .price-box {
+.bgimage {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100rpx;
-  border-radius: 20rpx;
-  border: 1rpx solid #d55a4a;
-  text-align: center;
+  height: 320rpx;
 }
-
-.price-list .price-box em {
-  line-height: 100rpx;
-  color: #d55a4a;
-  font-size: 30rpx;
-}
-
-.price-list .price-box .price {
-  font-size: 50rpx;
-  display: inline-block;
-}
-
-.price-list .price-box.active {
-  background-color: #d55a4a;
-}
-
-.price-list .price-box.active em {
-  color: #fff;
-  background-color: #d55a4a;
-}
-
-
 
 button[type=primary] {
   /* background-color: #56B5FC; */
@@ -120,8 +71,9 @@ button[type=primary] {
 
 .userinfo-nickname {
     font-size: 32rpx;
-    color: #007AFF;
-    background-color: #fbf9fe;
+    background-color: transparent;
+    color: #FFF;
+    /* color: #007AFF; */
     /* background-color: white; */
 }
 
@@ -129,22 +81,22 @@ button[type=primary] {
   border: none;
 }
 
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  box-sizing: border-box;
-  border-top: 1px solid #eee;
-  background: white;
+.weui-cells_after-title {
+  margin-top: 10px;
 }
 
-.hint,
-.error {
-  display: block;
-  margin: 8px 0;
-  color: #888;
-  font-size: 14px;
+.weui-cell {
+  padding: 15px;
 }
-.error {
-  color: #e64240;
+
+.weui-cells:before{
+  top:0;
+  border-top: none;
 }
+
+.weui-cells:after{
+  bottom:0;
+  border-bottom:none;
+}
+
+/*  */

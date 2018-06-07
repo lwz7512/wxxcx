@@ -26,18 +26,30 @@ Page({
   },
 
   //事件处理函数
-  iWantLearn: function(params) {
+  iWantLearn: function (params) {
     var id = params.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/cards/flow?id='+id
+      url: '/pages/cards/flow?id=' + id
     })
+  },
+
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    if (!this.data.slides.length) this._onLoad();
+  },
+
+  onLoad: function () {
+    // this._onLoad();
   },
 
   /**
    * 进入页面
    * 只判断权限并跳转到登录页 @2018/06/06
    */
-  onLoad: function () {
+  _onLoad: function () {
     console.log("进入首页");
 
     var that = this;
@@ -51,7 +63,7 @@ Page({
             console.error('no session!');
             reject();
           });
-        }else {
+        } else {
           console.error('no userinfo!');
           reject(new Error('no userinfo!'));
         }
@@ -65,24 +77,30 @@ Page({
       var session = Session.get();
       console.log(session);
       console.log('to load remote data....');
+      wx.showLoading({
+        title: '加载中',
+      })
       wx.request({
         // url: config.service.coursesUrl+'/1',
         url: config.service.recommendsUrl,
         method: 'GET',
-        data: {session_3rd: Session.get().session_3rd},// unit: cent
-        success: function(result){
-          console.log(result.data.res.data);
-
-          that.setData({slides: result.data.res.data});
+        data: { session_3rd: Session.get().session_3rd },// unit: cent
+        success: function (result) {
+          console.log(result);
+          wx.hideLoading();
+          if (result.data.meta.code == 400) {// user session invalid
+            setTimeout(() => that.switchToMine(), 100);
+            Session.clear();
+            return;
+          }
+          that.setData({ slides: result.data.res.data });
         }
       });
     }).catch((err) => {
       console.log(this);
-      setTimeout(()=> this.switchToMine(), 100);
+      setTimeout(() => this.switchToMine(), 100);
       Session.clear();
     });
-
-
 
   }, // end of onLoad
 
@@ -94,13 +112,13 @@ Page({
   },
 
 
-  onSwiperChange: function(e) {
+  onSwiperChange: function (e) {
     // console.log(e);
-    this.setData({currentIndex: e.detail.current});
+    this.setData({ currentIndex: e.detail.current });
   },
 
 
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     // console.log(e)
     // app.globalData.userInfo = e.detail.userInfo
     // this.setData({
@@ -118,10 +136,10 @@ Page({
       title: '码农情报',
       path: 'pages/index/index',
       // path: '/page/user?id=123',
-      success: function(res) {
+      success: function (res) {
         // 转发成功
       },
-      fail: function(res) {
+      fail: function (res) {
         // 转发失败
       }
     }

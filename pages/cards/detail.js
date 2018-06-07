@@ -18,7 +18,7 @@ Page({
 
     var res = wx.getSystemInfoSync()
     // console.log(res.windowHeight);
-    this.setData({windowHeight: res.windowHeight-305});
+    this.setData({windowHeight: res.windowHeight-356});
 
     // TODO, loading...
     var course = getApp().globalData.course;
@@ -34,6 +34,14 @@ Page({
     mdParser.wxParse('article', 'html', html, this, 5);
 
     this.setData({video_src: course.av_link});
+  },
+
+  openAward: function () {
+    var course = getApp().globalData.course;
+    
+    wx.navigateTo({
+      url: '/pages/award/money?course_id='+course.course_id
+    });
   },
 
   /**
@@ -83,6 +91,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '码农情报',
+      path: 'pages/index/index',
+      // path: '/page/user?id=123',
+      success: function(res) {
+        // 转发成功
+      },
+      fail: function(res) {
+        // 转发失败
+      }
+    }
   }
+
+
 })
