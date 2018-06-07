@@ -4,6 +4,8 @@ const app = getApp();
 const Session = require('../../session');
 const config = require('../../config');
 const util = require('../../utils/util');
+const Promise = require('../../utils/bluebird')
+const wechat = require('../../utils/wechat');
 
 Page({
   data: {
@@ -15,6 +17,7 @@ Page({
       'https://i.imgur.com/UYiroysl.jpg',
       'https://i.imgur.com/UPrs1EWl.jpg'
     ],
+    slides: [],
     indicatorDots: false,
     autoplay: false,
     interval: 5000,
@@ -23,50 +26,63 @@ Page({
   },
 
   //事件处理函数
-  iWantLearn: function() {
+  iWantLearn: function(params) {
+    var id = params.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/cards/flow'
+      url: '/pages/cards/flow?id='+id
     })
   },
 
   /**
    * 进入页面
+   * 只判断权限并跳转到登录页 @2018/06/06
    */
   onLoad: function () {
-
-    // FIXME, JUST FOR DEVTEST...
-    setTimeout(()=> wx.navigateTo({
-      url: '/pages/cards/flow'
-    }), 100);
-
     console.log("进入首页");
+
     var that = this;
 
-    // check user logged in...to switch tab mine
-    wx.getSetting({success: function (res) {
-      // console.log(res);
-      if (res.authSetting['scope.userInfo']) {
-        wx.checkSession({
-          success: function(){
+    var loggedPro = new Promise((resolve, reject) => {
+      wechat.getSetting().then(res => {
+        if (res.authSetting['scope.userInfo']) {
+          return wechat.checkSession().then(() => {
+            resolve();
+          }).catch(() => {
+            console.error('no session!');
+            reject();
+          });
+        }else {
+          console.error('no userinfo!');
+          reject(new Error('no userinfo!'));
+        }
+      }).catch(() => {
+        console.error('no permission!');
+        reject();
+      });
+    });
 
-            var session = Session.get();
-            console.log(session);
+    loggedPro.then(() => {
+      var session = Session.get();
+      console.log(session);
+      console.log('to load remote data....');
+      wx.request({
+        // url: config.service.coursesUrl+'/1',
+        url: config.service.recommendsUrl,
+        method: 'GET',
+        data: {session_3rd: Session.get().session_3rd},// unit: cent
+        success: function(result){
+          console.log(result.data.res.data);
 
-            // 如果本地没有回话则重新登录
-            if(!session) return that.switchToMine();
+          that.setData({slides: result.data.res.data});
+        }
+      });
+    }).catch((err) => {
+      console.log(this);
+      setTimeout(()=> this.switchToMine(), 100);
+      Session.clear();
+    });
 
-            // that.setData({userInfo: session.userinfo, logged: true});
-          },
-          fail: function () {
-            console.warn('Session is expired!');
-            that.switchToMine();
-          }
-        });
-      } else {
-        // util.showModel('用户未授权', '...');
-        // setTimeout(()=> that.switchToMine(), 100);
-      }
-    }});
+
 
   }, // end of onLoad
 
@@ -77,34 +93,6 @@ Page({
     })
   },
 
-  // onLoad: function () {
-  //   if (app.globalData.userInfo) {
-  //     this.setData({
-  //       userInfo: app.globalData.userInfo,
-  //       hasUserInfo: true
-  //     })
-  //   } else if (this.data.canIUse){
-  //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-  //     // 所以此处加入 callback 以防止这种情况
-  //     app.userInfoReadyCallback = res => {
-  //       this.setData({
-  //         userInfo: res.userInfo,
-  //         hasUserInfo: true
-  //       })
-  //     }
-  //   } else {
-  //     // 在没有 open-type=getUserInfo 版本的兼容处理
-  //     wx.getUserInfo({
-  //       success: res => {
-  //         app.globalData.userInfo = res.userInfo
-  //         this.setData({
-  //           userInfo: res.userInfo,
-  //           hasUserInfo: true
-  //         })
-  //       }
-  //     })
-  //   }
-  // },
 
   onSwiperChange: function(e) {
     // console.log(e);

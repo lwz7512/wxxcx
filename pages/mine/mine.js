@@ -2,6 +2,8 @@
 const config = require('../../config');
 const Session = require('../../session');
 const util = require('../../utils/util');
+const Promise = require('../../utils/bluebird')
+const wechat = require('../../utils/wechat');
 
 Page({
 
@@ -23,15 +25,23 @@ Page({
 
   /**
    * 生命周期函数--监听页面加载
+   * 只判断会话并处理登录按钮 @2018/06/06
    */
   onLoad: function (options) {
-    var session = Session.get();
-    console.log(session);
 
-    // 如果本地没有回话则重新登录
-    if(!session) return;
+    wechat.checkSession().then(() => {
+      // console.log('session exist...');
+      var session = Session.get();
+      // console.log(session);
+      // 如果本地没有回话则重新登录
+      if(!session) return;
 
-    this.setData({userInfo: session.userinfo, logged: true});
+      this.setData({userInfo: session.userinfo, logged: true});
+
+    }).catch(() => {
+      console.error('session expired!');
+    });
+
   },
 
   // user invode login...
@@ -46,98 +56,53 @@ Page({
     var userInfo = e.detail.userInfo;
 
     console.log(userInfo);
-
-    // 查看是否授权
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-
-          // 检查登录是否过期
-          wx.checkSession({
-            success: function () {
-              var session = Session.get();
-              console.log(session);
-              // FIXME, relogin while no session... @2018/05/29
-              // if(!session) that.login();
-              var options = {
-                encryptedData: e.detail.encryptedData,
-                iv: e.detail.iv,
-                userInfo: userInfo
-              }
-              console.log(options);
-
-              if(!session) return that.doLogin(options);
-
-              // 登录态未过期
-              util.showSuccess('登录成功');
-              that.setData({
-                userInfo: userInfo,
-                logged: true
-              });
-            },
-
-            fail: function () {
-              Session.clear();
-              console.warn('checkSession fail to doLogin...');
-              // 登录态已过期，需重新登录
-              var options = {
-                encryptedData: e.detail.encryptedData,
-                iv: e.detail.iv,
-                userInfo: userInfo
-              };
-              console.log(options);
-              that.doLogin(options);
-            },
-          });
-        } else {
-          util.showModel('用户未授权', e.detail.errMsg);
-        }
-      }
-    });
+    var options = {
+      encryptedData: e.detail.encryptedData,
+      iv: e.detail.iv,
+      userInfo: userInfo
+    };
+    this.doLogin(options);
   },
 
   doLogin: function (options) {
     var that = this;
     console.log('wx login...');
 
-    wx.login({
-      success: function (loginResult) {
-        console.log('loginResult: ');
-        console.log(loginResult);
-        wx.request({
-          url: config.service.loginUrl,
-          method: 'POST',
-          data: {
-            code: loginResult.code ,
-            ...options.userInfo
-          },
-          header: {
-              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-          },
-          success: function(res) {
-            console.log(res);
-            if(res.data.meta.code == '200'){
-              util.showSuccess('登录成功');
+    wechat.login().then(loginResult => {
+      console.log('loginResult: ');
+      console.log(loginResult);
+      wx.request({
+        url: config.service.loginUrl,
+        method: 'POST',
+        data: {
+          code: loginResult.code ,
+          ...options.userInfo
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        success: function(res) {
+          console.log(res);
+          if(res.data.meta.code == '200'){
+            util.showSuccess('登录成功');
+            // console.log(this);
 
-              that.setData({
-                userInfo: options.userInfo,
-                logged: true
-              });
-              var session_3rd = res.data.res.data.session_3rd;
-              // cache userinfo & session...
-              Session.set({userinfo: options.userInfo, session_3rd});
+            that.setData({
+              userInfo: options.userInfo,
+              logged: true
+            });
+            var session_3rd = res.data.res.data.session_3rd;
+            // cache userinfo & session...
+            Session.set({userinfo: options.userInfo, session_3rd});
 
-            }else{
-              util.showModel('登录失败', {});
-            }
+          }else{
+            util.showModel('登录失败', {});
           }
-        });
-      },
-      fail: function (loginError) {
-        util.showModel('登录失败', loginError)
-        console.log('登录失败', loginError)
-      },
+        }
+      });
     });
+
+
   },
 
 
@@ -151,10 +116,14 @@ Page({
   donate: function(event) {
     var that = this;
 
-    var session = Session.get();
-    console.log(session);
+    // var session = Session.get();
+    // console.log(session);
     // 如果本地没有回话则重新登录
-    if(!session) return util.showModel('登录后付款', {info: '需要用微信登录并允许获取用户信息!'});
+    if(!this.data.logged){
+      util.showModel('登录后付款', {info: '需要用微信登录并允许获取用户信息!'});
+      this.setData({ selected: 0 });
+      return;
+    }
 
     util.showBusy('发起付款...');
     var total = event.currentTarget.dataset.item;

@@ -1,4 +1,7 @@
 // pages/cards/flow.js
+const config = require('../../config');
+const Session = require('../../session');
+
 Page({
 
   /**
@@ -12,6 +15,7 @@ Page({
     results_raw: [],
     splashIn: false,
     windowHeight: 0,
+    details: {},
   },
 
   showInput: function () {
@@ -60,16 +64,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var res = wx.getSystemInfoSync()
-    // this.windowHeight = res.windowWidth;
-    console.log(res.windowHeight);
+    var that = this;
+    var res = wx.getSystemInfoSync();
+
     this.setData({windowHeight: res.windowHeight-48});
+
+    wx.request({
+      url: config.service.cdetailUrl+'/'+options.id,
+      method: 'GET',
+      data: {session_3rd: Session.get().session_3rd},
+      success: function(res){
+        console.log(res);
+        that.setData({
+          details: res.data.res.data,
+          results: res.data.res.data.course_data
+        });
+      }
+    });
+
   },
 
   openDetailPage: function(evt) {
+    var id = evt.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/cards/detail'
-    })
+      url: '/pages/cards/detail?id='+id
+    });
+    var app = getApp();
+    var courses = this.data.results;
+    courses.forEach(item => {if(item.id==id) app.globalData.course = item});
   },
 
   /**

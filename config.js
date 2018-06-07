@@ -21,6 +21,12 @@ var config = {
 
         paybackUrl: `${host}/education/payback`,
 
+        recommendsUrl: `${host}/education/recommendList`,
+
+        coursesUrl: `${host}/education/courseList`,
+
+        cdetailUrl: `${host}/education/coursedetail`,
+
         // 测试的信道服务地址
         // tunnelUrl: `${host}/weapp/tunnel`,
 

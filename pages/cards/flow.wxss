@@ -160,7 +160,7 @@
   margin: 10px 10px 0 10px;
   display: flex;
   color: #999;
-  height: 30px;
+  font-size: 16px;
   /* justify-content: center; */
 }
 
@@ -217,7 +217,7 @@
   /* border-left: 1px solid #CCC;
   border-right: 1px solid #CCC; */
 
-  font-size: 18px;
+  font-size: 16px;
   color: #606060;
 }
 

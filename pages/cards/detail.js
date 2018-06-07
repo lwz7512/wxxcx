@@ -6,17 +6,34 @@ Page({
    */
   data: {
     windowHeight: 0,
+    video_src: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var app = getApp();
+    console.log('to load course: '+options.id);
+
     var res = wx.getSystemInfoSync()
-    // this.windowHeight = res.windowWidth;
-    console.log(res.windowHeight);
+    // console.log(res.windowHeight);
     this.setData({windowHeight: res.windowHeight-305});
 
+    // TODO, loading...
+    var course = getApp().globalData.course;
+    console.log(course);
+    if(!course) return;
+
+    wx.setNavigationBarTitle({
+      title: course.name
+    });
+
+    var mdParser = app.globalData.wxParser;
+    var html = course.intro;
+    mdParser.wxParse('article', 'html', html, this, 5);
+
+    this.setData({video_src: course.av_link});
   },
 
   /**
@@ -44,7 +61,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    getApp().globalData.course = null;
+    console.log('on unload!');
   },
 
   /**

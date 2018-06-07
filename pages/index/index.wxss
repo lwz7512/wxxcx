@@ -4,7 +4,7 @@
 
 swiper {
   /* height: 450px; */
-  height: 410px; /* shorten height @2018/05/30 */
+  height: 470px; /* shorten height @2018/05/30 */
 }
 
 .page-section-spacing-for-swiper{
@@ -94,7 +94,7 @@ swiper {
   margin: 10px 10px 0 10px;
   display: flex;
   color: #999;
-  height: 30px;
+
   justify-content: center;
 }
 
@@ -106,7 +106,6 @@ swiper {
 .card .hilight-txt {
   text-align: center;
   font-size: 16px;
-  /* width: 100%; */
 }
 
 .card .stars {

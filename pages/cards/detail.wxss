@@ -1,5 +1,12 @@
 /* pages/cards/detail.wxss */
 
+/* for video view */
+video {
+  width: 100%;
+  height: 211px;
+}
+
+
 .header-card {
   padding: 10px;
   background-color: #FFF;
@@ -7,11 +14,11 @@
 
 .header-card .image-roundcorner {
   width: 100%;
-  height: 160px;
+  /* height: 160px; */
 
   display: flex;
   justify-content: center;
-
+  background-color: #000;
 }
 
 .header-card .header-img {
@@ -96,7 +103,7 @@
 .header-card .card-title {
   color: #333;
   font-size: 18px;
-  margin: 10px 10px 0 10px;
+  margin: 10px 10px 10px 10px;
 }
 
 .header-card .intro {

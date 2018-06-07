@@ -1,7 +1,10 @@
 <!--pages/cards/detail.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
+
 <view class="header-card">
   <view class="image-roundcorner">
-    <image src="../../images/header.png" class="header-img"/>
+    <!-- <image src="../../images/header.png" class="header-img"/> -->
+    <video id="myVideo" src="{{video_src}}" poster="../../images/header.png" controls="true" ></video>
   </view>
   <view class="card-body-white">
     <text class="speaker">主讲人</text>
@@ -26,16 +29,15 @@
   <!-- topic intro -->
   <view class="header-card ">
     <view class="card-title">
-      专题介绍
+      本期要点
     </view>
     <view class="intro">
-      <text class="intro-txt">
-        如何解读政策法规？随着区块链泡沫消退，行业从业者纷纷寻求区块链应用落地的方向，在公链目前落地困难的情况下，以联盟的形式与垂直行业。。。
-      </text>
+      <!-- <text class="intro-txt"></text> -->
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
     </view>
   </view>
   <!-- directory -->
-  <view class="header-card ">
+  <!-- <view class="header-card ">
     <view class="card-title">
       目录
     </view>
@@ -53,7 +55,7 @@
         <text class="section-title">3. 一小节视频标题</text>
       </view>
     </view>
-  </view>
+  </view> -->
   <!-- reward -->
   <view class="header-card">
     <view class="buttons">
