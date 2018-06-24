@@ -94,6 +94,8 @@ Page({
             return;
           }
           that.setData({ slides: result.data.res.data });
+          // forward to user guide @2018/06/22
+          that.openUserGuidePage();
         }
       });
     }).catch((err) => {
@@ -117,14 +119,9 @@ Page({
     this.setData({ currentIndex: e.detail.current });
   },
 
-
-  getUserInfo: function (e) {
-    // console.log(e)
-    // app.globalData.userInfo = e.detail.userInfo
-    // this.setData({
-    //   userInfo: e.detail.userInfo,
-    //   hasUserInfo: true
-    // })
+  // @2018/06/22
+  openUserGuidePage: function () {
+    console.log('open user guide...');
   },
 
   onShareAppMessage: function (res) {

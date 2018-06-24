@@ -20,7 +20,8 @@ Page({
     selected: 0,
     prices: [
       1, 5, 18, 48, 98, 188
-    ]
+    ],
+    windowHeight: 0
   },
 
   /**
@@ -28,6 +29,9 @@ Page({
    * 只判断会话并处理登录按钮 @2018/06/06
    */
   onLoad: function (options) {
+    var res = wx.getSystemInfoSync()
+    // console.log(res.windowHeight);
+    this.setData({windowHeight: res.windowHeight-160});
 
     wechat.checkSession().then(() => {
       // console.log('session exist...');

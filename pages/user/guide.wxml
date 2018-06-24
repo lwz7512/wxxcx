@@ -1,0 +1,26 @@
+<!--pages/user/guide.wxml-->
+<swiper indicator-dots="{{indicatorDots}}" style="height: {{windowHeight}}px"
+  current="{{current}}">
+
+    <swiper-item>
+      <image src="../../images/guide_hd1.png" class="slide-image" />
+      <view class="card" >
+        <view class="title">您公司所属行业?</view>
+        <view class="selected-tags">
+          <text class="tag {{item.active?'active':''}}" wx:for="{{tagA}}"
+            bindtap="selectCategory" data-id="{{item.name}}">{{item.name}}</text>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <image src="../../images/guide_hd2.png" class="slide-image" />
+    </swiper-item>
+    <swiper-item>
+      <image src="../../images/guide_hd3.png" class="slide-image" />
+    </swiper-item>
+    <swiper-item>
+      <image src="../../images/guide_hd4.png" class="slide-image" />
+    </swiper-item>
+
+</swiper>
+<button class="next-btn" bindtap="next">下一页 ></button>
