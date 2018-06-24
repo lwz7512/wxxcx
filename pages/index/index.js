@@ -42,7 +42,7 @@ Page({
   },
 
   onLoad: function () {
-    // this._onLoad();
+    
   },
 
   /**
@@ -113,15 +113,17 @@ Page({
     })
   },
 
-
   onSwiperChange: function (e) {
     // console.log(e);
     this.setData({ currentIndex: e.detail.current });
   },
 
   // @2018/06/22
+  // to check if save the selections; @2018/06/24
   openUserGuidePage: function () {
-    console.log('open user guide...');
+    var selected = wx.getStorageSync('complete');
+    // console.log(selected?true:false);
+    if(!selected) wx.navigateTo({url: '/pages/user/guide'});
   },
 
   onShareAppMessage: function (res) {

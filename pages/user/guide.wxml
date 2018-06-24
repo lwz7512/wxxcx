@@ -7,20 +7,45 @@
       <view class="card" >
         <view class="title">您公司所属行业?</view>
         <view class="selected-tags">
-          <text class="tag {{item.active?'active':''}}" wx:for="{{tagA}}"
-            bindtap="selectCategory" data-id="{{item.name}}">{{item.name}}</text>
+          <text class="tag {{item.active?'active':''}}" wx:for="{{tagA}}" wx:key="item"
+            bindtap="selectIndustry" data-id="{{item.name}}">{{item.name}}</text>
         </view>
       </view>
     </swiper-item>
     <swiper-item>
       <image src="../../images/guide_hd2.png" class="slide-image" />
+      <view class="card" >
+        <view class="title">公司类型?</view>
+        <view class="selected-tags">
+          <view class="row" wx:for="{{tagB}}" wx:key="item">
+            <text class="tag {{item.active?'active':''}}"
+              bindtap="selectCompanyType" data-id="{{item.name}}">{{item.name}}</text>
+          </view>
+        </view>
+      </view>
     </swiper-item>
     <swiper-item>
       <image src="../../images/guide_hd3.png" class="slide-image" />
+      <view class="card" >
+        <view class="title">您想了解的税种或专题? <text class="multi-select">(多选)</text></view>
+        <view class="selected-tags">
+          <text class="tag {{item.active?'active':''}}" wx:for="{{tagC}}" wx:key="item"
+            bindtap="selectTaxType" data-id="{{item.name}}">{{item.name}}</text>
+        </view>
+      </view>
     </swiper-item>
     <swiper-item>
       <image src="../../images/guide_hd4.png" class="slide-image" />
+      <view class="card" >
+        <view class="title">课程难度? <text class="multi-select">(多选)</text></view>
+        <view class="selected-tags">
+          <view class="row" wx:for="{{tagD}}" wx:key="item">
+            <text class="tag {{item.active?'active':''}}"
+              bindtap="selectDifcType" data-id="{{item.name}}">{{item.name}}</text>
+          </view>
+        </view>
+      </view>
     </swiper-item>
 
 </swiper>
-<button class="next-btn" bindtap="next">下一页 ></button>
+<button class="next-btn" bindtap="next">{{current<3?'下一页':'点击返回'}} ></button>

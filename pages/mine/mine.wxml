@@ -30,7 +30,7 @@
     </view>
 
     <view class="weui-cells weui-cells_after-title">
-        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <navigator url="/pages/user/guide" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">我的定制化</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>

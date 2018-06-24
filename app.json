@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/user/guide",
+    "pages/class/class",
     "pages/index/index",
+    "pages/user/guide",
     "pages/mine/mine",
     "pages/cards/flow",
     "pages/logs/logs",
-    "pages/class/class",
     "pages/cards/detail",
     "pages/award/money"
   ],

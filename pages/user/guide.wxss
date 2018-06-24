@@ -24,10 +24,19 @@ image {
   color: #56B5FC;
 }
 
+.card .multi-select {
+  font-size: 14px;
+  color: #56B5FC;
+}
+
 .card .selected-tags {
   width: 100%;
   height: 100%;
   padding: 20px;
+}
+
+.card .row {
+  /* display: block; */
 }
 
 .card .tag {

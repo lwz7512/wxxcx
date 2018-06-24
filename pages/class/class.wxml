@@ -1,13 +1,21 @@
 <!--pages/class/class.wxml-->
 <view class="stv-container">
   <view class="tab-bar">
-    <view wx:for="{{tabs}}" wx:key="unique" data-index=
+    <swiper display-multiple-items="4">
+      <block wx:for="{{categories}}" wx:key="item">
+        <swiper-item bindtap="selectMenu" data-index="{{index}}">
+          <text class="cate-txt">{{item.name}}</text>
+          <view class="{{item.active?'under-line':''}}"></view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- <view wx:for="{{tabs}}" wx:key="unique" data-index=
     "{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
       <text>{{item}}</text>
     </view>
-    <view style="width: {{stv.lineWidth}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
+    <view style="width: {{stv.lineWidth}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view> -->
   </view>
-  <view class="scroll-view">
+  <!-- <view class="scroll-view">
     <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd"
       class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
 
@@ -20,5 +28,5 @@
       </view>
 
     </view>
-  </view>
+  </view> -->
 </view>

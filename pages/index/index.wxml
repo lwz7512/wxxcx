@@ -5,7 +5,7 @@
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"
          duration="{{duration}}" next-margin="30px" previous-margin="30px"
          bindchange="onSwiperChange">
-        <block wx:for="{{slides}}">
+        <block wx:for="{{slides}}" wx:key="item">
           <swiper-item>
             <!-- add card... -->
             <view class="card" bindtap="iWantLearn" data-id="{{item.id}}">
