@@ -12,11 +12,6 @@ Page({
     // motto: 'Hello World',
     // userInfo: {},
     // hasUserInfo: false,
-    imgUrls: [
-      '../../images/header.png',
-      'https://i.imgur.com/UYiroysl.jpg',
-      'https://i.imgur.com/UPrs1EWl.jpg'
-    ],
     slides: [],
     indicatorDots: false,
     autoplay: false,
@@ -42,7 +37,7 @@ Page({
   },
 
   onLoad: function () {
-    
+
   },
 
   /**

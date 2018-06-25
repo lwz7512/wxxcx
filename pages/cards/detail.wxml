@@ -3,10 +3,15 @@
 
 <view class="header-card">
   <view class="image-roundcorner">
-    <!-- <image src="../../images/header.png" class="header-img"/> -->
-    <video id="myVideo" src="{{video_src}}" poster="../../images/header.png" controls="true" ></video>
+    <video id="myVideo" src="{{video_src}}" controls="true" initial-time="{{initialTime}}"
+      bindplay="videoPlayed" bindpause="videoPaused" bindtimeupdate="videoUpdated"></video>
   </view>
   <view class="card-body-white">
+    <view class="running-ads">
+      <text class="ad-item {{activeIndex == 1?'animation':''}}">滚动广告条。。。。</text>
+      <text class="ad-item {{activeIndex == 2?'animation':''}}">垂直跑马灯。。。。</text>
+      <text class="ad-item {{activeIndex == 3?'animation':''}}">可以展示可点击内容</text>
+    </view>
     <text class="speaker">主讲人</text>
     <view class="speaker-intro">
       <view class="avatar">
@@ -26,8 +31,17 @@
 </view>
 
 <scroll-view scroll-y style="height: {{windowHeight}}px; margin-top: 10px;" >
+  <view class="header-card gap">
+    <view class="card-title">
+      直播答疑
+    </view>
+    <view class="intro">
+      <view class="q">问：</view>
+      <view class="a">答：</view>
+    </view>
+  </view>
   <!-- topic intro -->
-  <view class="header-card ">
+  <view class="header-card">
     <view class="card-title">
       本期要点
     </view>
@@ -57,7 +71,7 @@
     </view>
   </view> -->
   <!-- reward -->
-  <view class="header-card">
+  <view class="header-card gap">
     <view class="buttons">
       <button class="blue-outline">试听</button>
       <button class="blue-outline">咨询</button>

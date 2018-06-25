@@ -1,4 +1,7 @@
 // pages/user/guide.js
+const config = require('../../config');
+const Session = require('../../session');
+
 Page({
 
   /**
@@ -105,11 +108,7 @@ Page({
     var id = evt.currentTarget.dataset.id;
     var cates = this.data.tagD;
     cates.forEach(item => {
-      if(item.name == id){
-        item.active = true;
-      } else {
-        item.active = false;
-      }
+      if(item.name == id) item.active = item.active?false:true;
     });
     this.setData({tagD: cates});
   },
@@ -149,8 +148,25 @@ Page({
     // remember the selection...
     wx.setStorageSync('complete', results);
 
-    // TODO, save the remote db...
-    //
+    // save the remote db...
+    wx.request({
+      url: config.service.customlUrl,
+      method: 'POST',
+      header: {
+          'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      data: {
+        session_3rd: Session.get().session_3rd,
+        industry: results[0].reduce((ac, cu)=> ac+cu.name+',', ''),
+        company: results[1].reduce((ac, cu)=> ac+cu.name+',', ''),
+        want: results[2].reduce((ac, cu)=> ac+cu.name+',', ''),
+        difficulty: results[3].reduce((ac, cu)=> ac+cu.name+',', '')
+      },// unit: cent
+      success: function (result) {
+        console.log(result);
+      }
+    });
+    console.log('send user custom...');
   },
 
   /**

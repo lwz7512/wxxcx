@@ -27,6 +27,8 @@ var config = {
 
         cdetailUrl: `${host}/education/coursedetail`,
 
+        customlUrl: `${host}/education/home/api/saveuserdetail`,
+
         // 测试的信道服务地址
         // tunnelUrl: `${host}/weapp/tunnel`,
 

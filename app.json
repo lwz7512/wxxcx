@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/class/class",
     "pages/index/index",
+    "pages/class/class",
     "pages/user/guide",
     "pages/mine/mine",
     "pages/cards/flow",

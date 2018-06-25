@@ -48,4 +48,4 @@
     </swiper-item>
 
 </swiper>
-<button class="next-btn" bindtap="next">{{current<3?'下一页':'点击返回'}} ></button>
+<button class="next-btn" bindtap="next">{{current<3?'下一页':'点击保存'}} ></button>

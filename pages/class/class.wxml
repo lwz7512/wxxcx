@@ -1,5 +1,22 @@
 <!--pages/class/class.wxml-->
 <view class="stv-container">
+  <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+          <view class="weui-search-bar__box">
+              <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+              <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+              <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                  <icon type="clear" size="14"></icon>
+              </view>
+          </view>
+          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+              <icon class="weui-icon-search" type="search" size="14"></icon>
+              <view class="weui-search-bar__text">搜索</view>
+          </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+  </view>
+
   <view class="tab-bar">
     <swiper display-multiple-items="4">
       <block wx:for="{{categories}}" wx:key="item">
@@ -9,24 +26,12 @@
         </swiper-item>
       </block>
     </swiper>
-    <!-- <view wx:for="{{tabs}}" wx:key="unique" data-index=
-    "{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
-      <text>{{item}}</text>
-    </view>
-    <view style="width: {{stv.lineWidth}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view> -->
   </view>
-  <!-- <view class="scroll-view">
-    <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd"
-      class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
-
-      <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" class="one-scene">
-        <scroll-view style="height:100%" scroll-y>
-          <view >
-            <text>这是第{{index+1}}个页面</text>
-          </view>
-        </scroll-view>
+  <scroll-view scroll-y style="height: {{windowHeight}}px; margin-top: 0px;" >
+    <view class="switch-content">
+      <view class="content-item" wx:for="{{contents}}" wx:key="item">
+        <text>{{item}}</text>
       </view>
-
     </view>
-  </view> -->
+  </scroll-view>
 </view>
