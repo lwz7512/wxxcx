@@ -1,3 +1,5 @@
+// user first install guide to custom preferences
+// @2018/07/07
 // pages/user/guide.js
 const config = require('../../config');
 const Session = require('../../session');
@@ -28,7 +30,7 @@ Page({
      ],
      windowHeight: 0,
      current: 0,
-     complete: false
+     complete: false, // 向导选择结束
    },
 
   /**
@@ -126,7 +128,7 @@ Page({
     });
     if(!selected) return this.showAlert('请选择选项!');
     if(slideIndex == 3) {
-      this.setData({complete: true});
+      this.setData({complete: true}); // 向导选择结束
       return wx.navigateBack({delta: 1});
     }
     // ...judge the end of slide...
@@ -137,7 +139,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    // if not complete guide and return, do not send personal favorites
+    // @2018/07/06
     var complete = this.data.complete;
+    if(!complete) return;
 
     var results = {0:[], 1:[], 2:[], 3:[]};
     this.data.tagA.forEach(item => {if(item.active) results[0].push(item)});

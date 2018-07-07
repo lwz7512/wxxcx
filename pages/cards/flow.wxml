@@ -20,31 +20,29 @@
     <!-- cards -->
     <scroll-view scroll-y style="height: {{windowHeight}}px;" >
 
-    <view class="card" bindtap="openDetailPage" wx:for="{{results}}" wx:key="item" data-id="{{item.id}}">
-      <view class="card-body-shadow">
-        <view class="image-roundcorner">
-          <image src="{{item.head_img_url}}" class="slide-image header-img"/>
-          <text class="right-blue-flag">3100人正在学习</text>
-          <text class="right-updt-txt">每周三更新</text>
-        </view>
-        <view class="card-body-white">
-          <view class="footer ">
-            <view class="footer-title">{{details.name}}</view>
-            <view class="footer-tags ">
-              <text class="highlight" >第{{index+1}}期看点： {{item.name}}</text>
+      <view class="card" bindtap="openDetailPage" wx:for="{{results}}" wx:key="item" data-id="{{item.id}}">
+        <view class="card-body-shadow">
+          <view class="image-roundcorner">
+            <image src="{{item.head_img_url}}" class="slide-image header-img"/>
+            <text class="right-blue-flag">3100人正在学习</text>
+            <text class="right-updt-txt">每周三更新</text>
+          </view>
+          <view class="card-body-white">
+            <view class="footer ">
+              <view class="footer-title">{{details.name}}</view>
+              <view class="footer-tags ">
+                <text class="highlight" >第{{index+1}}期看点： {{item.name}}</text>
+              </view>
+              <!-- <view class="price">
+                <text >699元/9期</text>
+              </view> -->
             </view>
-            <!-- <view class="price">
-              <text >699元/9期</text>
-            </view> -->
           </view>
         </view>
       </view>
-    </view>
 
     </scroll-view>
 
-
   </view>
   <!-- <text >hello...</text> -->
-
 </view>

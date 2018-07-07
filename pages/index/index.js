@@ -59,7 +59,8 @@ Page({
             reject();
           });
         } else {
-          console.error('no userinfo!');
+          // console.error('no userinfo!');
+          // catched by promise callee @2018/07/06
           reject(new Error('no userinfo!'));
         }
       }).catch(() => {
@@ -94,7 +95,7 @@ Page({
         }
       });
     }).catch((err) => {
-      console.log(this);
+      // this is current page...
       setTimeout(() => this.switchToMine(), 100);
       Session.clear();
     });

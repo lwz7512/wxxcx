@@ -1,0 +1,147 @@
+/* pages/mine/certificates.wxss */
+
+.title-section {
+  padding: 10px 20px;
+  color: #888888;
+  background-color: #FFFFFF;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.card {
+  width: 100%;
+  /* width: 295px; */
+  /* height: 450px; */
+  /* background-color: #CCCCCC; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .card-body-shadow {
+  width: 100%;
+  /* necessary to full height of card-body-white */
+  height: 180px;
+  /* importantly place here to determine center & LR margin */
+  margin: 6px 10px 4px 10px;
+  /* box-shadow: 0px 0px 3px 3px #CCC; */
+  box-shadow: 0px 0px 2px 2px #DDD;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+
+  background-color: #FFFFFF;
+}
+
+.card .green-bar {
+  width: 10px;
+  height: 180px;
+  background-color: #00B2A6;
+}
+
+.card .color-bar {
+  width: 10px;
+  height: 180px;
+  background-color: #56B5FC;
+}
+
+.card .right-blue-flag {
+  background-color: #56B5FC;
+  color: #FFFFFF;
+  padding: 4px 10px 4px 10px;
+  /* border: 1px solid #2386C9; */
+  /* border-radius: 15px; */
+  border-top-left-radius:    15px;
+  border-bottom-left-radius: 15px;
+
+  font-size: 12px;
+
+  position: absolute;
+
+  margin-top: -60px;
+  right: 10px;
+}
+
+.card .right-green-flag {
+  background-color: #00B2A6;
+  color: #FFFFFF;
+  padding: 4px 10px 4px 10px;
+  /* border: 1px solid #2386C9; */
+  /* border-radius: 15px; */
+  border-top-left-radius:    15px;
+  border-bottom-left-radius: 15px;
+
+  font-size: 12px;
+
+  position: absolute;
+
+  margin-top: -60px;
+  right: 10px;
+}
+
+.card .card-body-white {
+  background-color: #FFF;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.card .title {
+  margin: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.card .footer {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card .footer-title {
+  padding: 10px 10px 0 10px;
+  margin: 0 10px; /* important to center & LR margin */
+
+  font-size: 18px;
+  color: #606060;
+}
+
+.card .footer-tags {
+  padding: 0px 10px 10px 10px;
+  font-size: 18px;
+  /* important to center & LR margin */
+  /* margin: 0 10px;  */
+}
+
+.card .highlight {
+  margin: 10px 10px 0 10px;
+  display: flex;
+  color: #AAA;
+  font-size: 16px;
+  /* justify-content: center; */
+}
+
+.card .red {
+  color: #FF0000;
+}
+
+.card .float-icon {
+  position: absolute;
+  margin-top: 20px;
+  right: 50px;
+  font-size: 30px;
+  color: #56B5FC;
+}
+
+.card .print-txt {
+  position: absolute;
+  margin-top: 50px;
+  right: 50px;
+  font-size: 14px;
+  color: #999999;
+}

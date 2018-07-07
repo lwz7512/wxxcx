@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/mine/certificates",
     "pages/index/index",
     "pages/class/class",
     "pages/user/guide",
@@ -7,7 +8,14 @@
     "pages/cards/flow",
     "pages/logs/logs",
     "pages/cards/detail",
-    "pages/award/money"
+    "pages/award/money",
+    "pages/mine/favorites",
+    "pages/mine/learnpath",
+    "pages/mine/achievement",
+    "pages/mine/daysignin",
+    "pages/mine/readed",
+    "pages/mine/invites",
+    "pages/mine/ordered"
   ],
   "window": {
     "backgroundTextStyle": "light",

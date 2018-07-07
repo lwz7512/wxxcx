@@ -21,7 +21,18 @@ Page({
     prices: [
       1, 5, 18, 48, 98, 188
     ],
-    windowHeight: 0
+    windowHeight: 0,
+    // unlogin page address @2018/07/06
+    page_ordered:  'void', // /pages/mine/ordered
+    page_favorites:'void', // /pages/mine/favorites
+    page_learnpath:'void', // /pages/mine/learnpath
+    page_customed: 'void', // /pages/user/guide
+    page_achievement:'void', // /pages/mine/achievement
+    page_daysignin:'void', // /pages/mine/daysignin
+    page_readed:   'void', // /pages/mine/readed
+    page_certificates:'void', // /pages/mine/certificates
+    page_invites:  'void', // /pages/mine/invites
+    page_sharefriends:'void', // use api...
   },
 
   /**
@@ -42,11 +53,28 @@ Page({
 
       this.setData({userInfo: session.userinfo, logged: true});
 
+      // TODO, reset navigator url value! @2018/07/06
+      this._enableNavigator();
+
     }).catch(() => {
-      console.error('session expired!');
+      // console.error('session expired!');
       util.showSuccess('微信登录后使用');
     });
 
+  },
+
+  _enableNavigator: function () {
+    this.setData({
+      page_ordered:  '/pages/mine/ordered',
+      page_favorites:'/pages/mine/favorites',
+      page_learnpath:'/pages/mine/learnpath',
+      page_customed: '/pages/user/guide',
+      page_achievement:'/pages/mine/achievement',
+      page_daysignin: '/pages/mine/daysignin',
+      page_readed:    '/pages/mine/readed',
+      page_certificates:'/pages/mine/certificates',
+      page_invites:   '/pages/mine/invites',
+    });
   },
 
   // user invode login...
@@ -101,6 +129,8 @@ Page({
             Session.set({userinfo: options.userInfo, session_3rd});
 
             setTimeout(()=> that.switchToHome(), 100);
+            // enable navigator @2018/07/07
+            that._enableNavigator();
 
           }else{
             util.showModel('登录失败', {});
@@ -108,7 +138,6 @@ Page({
         }
       });
     });
-
 
   },
 
@@ -122,7 +151,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    console.log('page onReady!');
+  },
 
+  shareToFriends: function (evt) {
+    console.log('share...');
   },
 
   /**

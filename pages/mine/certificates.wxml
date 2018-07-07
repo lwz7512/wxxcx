@@ -1,0 +1,46 @@
+<!-- 我的证书 @2018/07/07 -->
+<!--pages/mine/certificates.wxml-->
+<scroll-view scroll-y style="height: {{windowHeight}}px;" >
+
+  <view class="title-section">
+    <text class="title">正在学习中</text>
+  </view>
+
+  <view class="card">
+    <view class="card-body-shadow">
+      <view class="green-bar"></view>
+      <view class="card-body-white">
+        <text class="right-green-flag">3100人正在学习</text>
+        <view class="footer ">
+          <view class="footer-title">区块链揭秘系列</view>
+          <view class="footer-tags ">
+            <text class="highlight" >总课时15节 已完成 <text class="red">60%</text></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="title-section">
+    <text class="title">已完成系列课</text>
+  </view>
+
+  <view class="card">
+    <view class="card-body-shadow">
+      <view class="color-bar"></view>
+      <view class="card-body-white">
+        <text class="right-blue-flag">3100人已经结业</text>
+        <view class="footer ">
+          <view class="footer-title">政策法规解读第一课</view>
+          <view class="footer-tags ">
+            <text class="highlight" >2018-06-15</text>
+          </view>
+        </view>
+        <text class="fa icon-print float-icon"></text>
+        <text class="print-txt">打印</text>
+      </view>
+    </view>
+  </view>
+
+
+</scroll-view>
