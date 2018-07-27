@@ -89,12 +89,12 @@ Page({
 
   openDetailPage: function(evt) {
     var id = evt.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/cards/detail?id='+id
-    });
     var app = getApp();
     var courses = this.data.results;
     courses.forEach(item => {if(item.id==id) app.globalData.course = item});
+    wx.navigateTo({
+      url: '/pages/cards/detail?id='+id
+    });
   },
 
   /**

@@ -12,6 +12,10 @@ video {
   background-color: #FFF;
 }
 
+.header-card.no-padding {
+  padding: 0;
+}
+
 .header-card .image-roundcorner {
   width: 100%;
   /* height: 160px; */
@@ -36,11 +40,12 @@ video {
   flex-direction: column;
 }
 
+
 .header-card .speaker {
   font-size: 16px;
   color: #333;
   margin: 10px 0;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .header-card .speaker-intro {
@@ -48,7 +53,7 @@ video {
   justify-content: flex-start;
   flex-direction: row;
 
-  /* margin: 10px 0; */
+  margin: 0px 10px;
 }
 
 .header-card .avatar {
@@ -228,29 +233,30 @@ button.blue-outline.button-hover {
   width: 100%;
   height: 26px;
   overflow: hidden;
-  background-color: #000000;
+  background-color: #333333;
   color: #FFFFFF;
 }
 
 .header-card .ad-item {
   display: none;
   font-size: 13px;
-  padding: 0 10px;
+  padding: 0px 10px;
   position: relative;
 }
 
 .header-card .ad-item.animation {
-  display: flex;
+  display: block;
   animation: marquee 3s;
   /* animation: marquee 3s infinite; */
 }
 
 /* Make it move */
+/* from top to bottom @2017/07/26 */
 @keyframes marquee {
-    0%   { transform: translate(0, 30px); }
-    10%  { transform: translate(0, 0); }
-    90%  { transform: translate(0, 0); }
-    100% { transform: translate(0, -30px); }
+    0%   { transform: translate(0, -30px); }
+    10%  { transform: translate(0, -15px); }
+    90%  { transform: translate(0, -15px); }
+    100% { transform: translate(0, 30px); }
 }
 
 

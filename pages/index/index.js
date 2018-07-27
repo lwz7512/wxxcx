@@ -56,7 +56,7 @@ Page({
             resolve();
           }).catch(() => {
             console.error('no session!');
-            reject();
+            reject(new Error('no session!'));
           });
         } else {
           // console.error('no userinfo!');

@@ -1,16 +1,17 @@
 <!--pages/cards/detail.wxml-->
 <import src="../../wxParse/wxParse.wxml"/>
 
-<view class="header-card">
+<view class="header-card no-padding">
   <view class="image-roundcorner">
     <video id="myVideo" src="{{video_src}}" controls="true" initial-time="{{initialTime}}"
       bindplay="videoPlayed" bindpause="videoPaused" bindtimeupdate="videoUpdated"></video>
   </view>
-  <view class="card-body-white">
+  <view class="card-body-white with-padding">
     <view class="running-ads">
-      <text class="ad-item {{activeIndex == 1?'animation':''}}">滚动广告条。。。。</text>
-      <text class="ad-item {{activeIndex == 2?'animation':''}}">垂直跑马灯。。。。</text>
-      <text class="ad-item {{activeIndex == 3?'animation':''}}">可以展示可点击内容</text>
+      <text class="ad-item {{activeIndex == (index+1)?'animation':''}}" wx:for="{{marquees}}"
+        bindtap="openRecomdPage" data-id="{{item.id}}">
+        {{item.name}}
+      </text>
     </view>
     <text class="speaker">主讲人</text>
     <view class="speaker-intro">

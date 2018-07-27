@@ -10,7 +10,6 @@ var config = {
     // 下面的地址配合云端 Demo 工作
     service: {
         host,
-
         // 登录地址，用于建立会话
         loginUrl: `${host}/education/login`,
 
@@ -28,6 +27,10 @@ var config = {
         cdetailUrl: `${host}/education/coursedetail`,
 
         customlUrl: `${host}/education/home/api/saveuserdetail`,
+        // @2018/07/11
+        pdfImgsUrl: `${host}/kfile/home/api/getimg`,
+        // 课程上的跑马灯广告 @2018/07/26
+        marqueeTxtUrl: `${host}/education/home/api/myrecommend`,
 
         // 测试的信道服务地址
         // tunnelUrl: `${host}/weapp/tunnel`,
