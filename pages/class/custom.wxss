@@ -1,0 +1,17 @@
+/* pages/class/custom.wxss */
+
+.weui-label {
+  width: 125px;
+}
+
+button[type=primary] {
+  background-color: #56B5FC;
+  border-radius: 0;
+  /* font-size: 16px; */
+}
+
+.pay-btn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

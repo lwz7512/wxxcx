@@ -15,7 +15,9 @@
     "pages/mine/daysignin",
     "pages/mine/readed",
     "pages/mine/invites",
-    "pages/mine/ordered"
+    "pages/mine/ordered",
+    "pages/award/order",
+    "pages/class/custom"
   ],
   "window": {
     "backgroundTextStyle": "light",

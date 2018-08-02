@@ -36,9 +36,9 @@
                     <text class="learning person-txt">人正在学习</text>
                   </view>
 
-                  <view class="weui-btn-area">
+                  <!-- <view class="weui-btn-area">
                     <button class="weui-btn" type="primary" >我要学习</button>
-                  </view>
+                  </view> -->
                 </view>
               </view>
             </view>

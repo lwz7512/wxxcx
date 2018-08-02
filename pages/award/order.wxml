@@ -1,0 +1,9 @@
+<!--pages/award/order.wxml-->
+<view class="container">
+  <!-- <view class="purchase">课程名称</view> -->
+  <view class="course">{{course_name}}</view>
+  <view class="price large">{{course_price}}元</view>
+  <view class="pay-btn">
+    <button class="weui-btn" type="primary" bindtap="goPay">去支付</button>
+  </view>
+</view>

@@ -168,6 +168,9 @@ button.blue-outline {
   line-height: 1.5;
   background-color: #FFF;
 }
+button.blue-outline.half {
+  width: 150px;
+}
 /* wow.... it's magical to remove the button border @2018/06/07 */
 button.blue-outline::after {
   border: none;
@@ -217,16 +220,17 @@ button.blue-outline.button-hover {
 }
 
 .header-card .round-circle-btn .fa {
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: 15px;
   color: #FFA500;
+  font-size: 22px;
 }
 
-.header-card .round-circle-btn .icon-money {
+.header-card .round-circle-btn .icon-yen {
   margin-top: 13px;
   margin-left: 17px;
   color: #FFA500;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .header-card .running-ads {

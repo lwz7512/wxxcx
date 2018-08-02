@@ -91,7 +91,11 @@ Page({
     var id = evt.currentTarget.dataset.id;
     var app = getApp();
     var courses = this.data.results;
+    // remember selected
     courses.forEach(item => {if(item.id==id) app.globalData.course = item});
+    // remember price...
+    app.globalData.course.price = this.data.details.price;
+    // open it...
     wx.navigateTo({
       url: '/pages/cards/detail?id='+id
     });

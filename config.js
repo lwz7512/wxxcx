@@ -31,7 +31,10 @@ var config = {
         pdfImgsUrl: `${host}/kfile/home/api/getimg`,
         // 课程上的跑马灯广告 @2018/07/26
         marqueeTxtUrl: `${host}/education/home/api/myrecommend`,
-
+        // 按类型取数据
+        categoryUrl: `${host}/education/home/api/courseList`,
+        // 有多少种类型
+        classTypeUrl: `${host}/education/home/api/course_type`,
         // 测试的信道服务地址
         // tunnelUrl: `${host}/weapp/tunnel`,
 

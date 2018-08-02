@@ -4,16 +4,18 @@
 <view class="header-card no-padding">
   <view class="image-roundcorner">
     <video id="myVideo" src="{{video_src}}" controls="true" initial-time="{{initialTime}}"
-      bindplay="videoPlayed" bindpause="videoPaused" bindtimeupdate="videoUpdated"></video>
+      bindplay="videoPlayed" bindpause="videoPaused" bindtimeupdate="videoUpdated"
+      bindended="videoEnded" style="width: {{windowWidth}}px;"></video>
   </view>
   <view class="card-body-white with-padding">
-    <view class="running-ads">
+    <view class="running-ads" wx:if="{{marquees.length}}">
       <text class="ad-item {{activeIndex == (index+1)?'animation':''}}" wx:for="{{marquees}}"
         bindtap="openRecomdPage" data-id="{{item.id}}">
         {{item.name}}
       </text>
     </view>
-    <text class="speaker">主讲人</text>
+
+    <!-- <text class="speaker">主讲人</text>
     <view class="speaker-intro">
       <view class="avatar">
         <image src="../../images/user-unlogin.png" class="avt-img"/>
@@ -27,7 +29,8 @@
           毕马威税务合伙人
         </view>
       </view>
-    </view>
+    </view> -->
+
   </view>
 </view>
 
@@ -73,12 +76,17 @@
   </view> -->
   <!-- reward -->
   <view class="header-card gap">
-    <view class="buttons">
-      <button class="blue-outline">试听</button>
+    <view class="buttons" wx:if="{{price}}">
+      <button class="blue-outline" bindtap="trytolisten">试听</button>
       <button class="blue-outline">咨询</button>
-      <button class="blue-outline">购买</button>
+      <button class="blue-outline" bindtap="openOrder">购买</button>
       <button class="blue-outline" open-type="share">分享</button>
     </view>
+    <view class="buttons" wx:else>
+      <button class="blue-outline half">咨询</button>
+      <button class="blue-outline half" open-type="share">分享</button>
+    </view>
+
     <view class="long-btn">
       <text class="orange">内容很棒 激励一下</text>
     </view>
@@ -91,7 +99,7 @@
       </view>
       <view class="one-column">
         <view class="round-circle-btn" bindtap="openAward">
-          <text class="fa icon-money"></text>
+          <text class="fa icon-yen"></text>
         </view>
       </view>
       <view class="one-column"></view>

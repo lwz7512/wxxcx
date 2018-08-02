@@ -21,7 +21,7 @@ swiper {
 
 .card {
   width: 295px;
-  /* height: 450px; */
+  height: 450px;
   /* background-color: #CCCCCC; */
   display: flex;
   justify-content: center;
@@ -97,7 +97,8 @@ swiper {
   color: #999;
 
   justify-content: center;
-  height: 50px;
+  height: 80px;
+  overflow-y: hidden;
 }
 
 .card .fa-align-fix {

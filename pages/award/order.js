@@ -1,10 +1,9 @@
-// pages/award/money.js
+// pages/award/order.js
 const config = require('../../config');
 const Session = require('../../session');
 const util = require('../../utils/util');
 const Promise = require('../../utils/bluebird')
 const wechat = require('../../utils/wechat');
-
 
 Page({
 
@@ -12,47 +11,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: '',
-    logo: '/images/logo.jpg',
-    title: '点击登录',
-    selected: 0,
-    prices: [
-      1, 5, 18, 48, 98, 188
-    ],
-    course: 0,
+    course_name: '',
+    course_price:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({course: options.course_id});
     console.log(options);
+    this.setData({
+      course: options.course_id,
+      course_price:  options.price,
+      course_name: getApp().globalData.course.name,
+    });
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  selectItem: function(event) {
-    var total = event.currentTarget.dataset.item;
-    var that = this;
-    that.setData({ selected: total });
-
-    // this.donate(event);
-  },
-
-  donate: function(event) {
+  goPay: function () {
+    return;
+    
     var that = this;
 
     util.showBusy('发起付款...');
-    var total = event.currentTarget.dataset.item;
+    var total = this.data.course_price;
 
     wx.request({
       url: config.service.prepayUrl+'?course_id='+ this.data.course + '&price=' +total,
@@ -98,6 +80,12 @@ Page({
 
   },
 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
 
   /**
    * 生命周期函数--监听页面显示

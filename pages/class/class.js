@@ -1,4 +1,7 @@
 // pages/class/class.js
+const config = require('../../config');
+const Session = require('../../session');
+
 Page({
 
   /**
@@ -9,21 +12,47 @@ Page({
     inputVal: "",
     loading: true,
     categories: [
-      {name:'专项培训', active: true},{name:'精品课程'},{name:'点读机'},{name:'最新政策法规'},
-      {name:'往期研讨会'},{name:'读书会'},{name:'私人定制'},{name:'精英训练营'}
+      {name:'专项培训', active: true, type: 1},{name:'精品课程', type: 2},
+      // {name:'点读机', type: 3},{name:'最新政策法规', type: 4},{name:'私人定制', type: 7},
+      {name:'往期研讨会', type: 3},{name:'KPMG刊物', type: 4},{name:'精英训练营', type: 6}
     ],
     windowHeight: 0,
     contents: ['专项培训有么有'], // for each section...
+    results: [],
+    current: 0, // save active index
   },
 
   onLoad:function(){
+    var that = this;
     var res = wx.getSystemInfoSync()
     // console.log(res.windowHeight);
     this.setData({windowHeight: res.windowHeight-30});
+
+    wx.request({
+      url: config.service.categoryUrl,
+      method: 'GET',
+      data: {
+        session_3rd: Session.get().session_3rd,
+        type: 1,
+      },
+      success: function(res){
+        console.log(res);
+        wx.hideLoading();
+        that.setData({
+          results: res.data.res.data,
+          loading: false,
+        });
+      }
+    });
+    wx.showLoading({
+      title: '加载中',
+    });
   },
 
   selectMenu: function(evt) {
-    var current  =evt.currentTarget.dataset.index;
+    var that = this;
+    var current = evt.currentTarget.dataset.index;
+    var type = evt.currentTarget.dataset.type;
     this.data.categories.forEach((item,i) => {
       if (current == i) {
         item.active = true;
@@ -32,12 +61,41 @@ Page({
       }
     });
     this.setData({categories: this.data.categories});
-    // TODO, get data....
-    var contentlist = ['有么有','可以有','暂木有','在路上','还没有'];
-    var randomWord = Math.floor(Math.random()*5);
-    var category = this.data.categories[current].name;
-    this.setData({contents: [category+contentlist[randomWord]]});
 
+    // TODO, get data....
+    if(this.data.current == current) return;
+
+    wx.request({
+      url: config.service.categoryUrl,
+      method: 'GET',
+      data: {
+        session_3rd: Session.get().session_3rd,
+        type: type,
+      },
+      success: function(res){
+        console.log(res);
+        wx.hideLoading();
+        that.setData({
+          results: res.data.res.data,
+          loading: false,
+        });
+      }
+    });
+
+    this.setData({
+      current: current,
+      loading: true,
+    });
+
+    wx.showLoading({
+      title: '加载中',
+    });
+  },
+  // 私人定制 @2018/08/02
+  openServiceForm: function () {
+    wx.navigateTo({
+      url: '/pages/class/custom'
+    });
   },
 
   showInput: function () {
@@ -67,40 +125,19 @@ Page({
 
   },
 
-  // /**
-  //  * 生命周期函数--监听页面加载
-  //  */
-  // onLoad: function (options) {
-  //
-  // },
-  //
-  // /**
-  //  * 生命周期函数--监听页面初次渲染完成
-  //  */
-  // onReady: function () {
-  //
-  // },
-  //
-  // /**
-  //  * 生命周期函数--监听页面显示
-  //  */
-  // onShow: function () {
-  //
-  // },
-  //
-  // /**
-  //  * 生命周期函数--监听页面隐藏
-  //  */
-  // onHide: function () {
-  //
-  // },
-  //
-  // /**
-  //  * 生命周期函数--监听页面卸载
-  //  */
-  // onUnload: function () {
-  //
-  // },
+  iWantLearn: function (params) {
+    var id = params.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/cards/flow?id=' + id
+    });
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
