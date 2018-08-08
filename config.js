@@ -23,7 +23,7 @@ var config = {
         recommendsUrl: `${host}/education/recommendList`,
 
         coursesUrl: `${host}/education/courseList`,
-
+        // courses in one topic
         cdetailUrl: `${host}/education/coursedetail`,
 
         customlUrl: `${host}/education/home/api/saveuserdetail`,
@@ -35,6 +35,9 @@ var config = {
         categoryUrl: `${host}/education/home/api/courseList`,
         // 有多少种类型
         classTypeUrl: `${host}/education/home/api/course_type`,
+        // course details @2018/08/08
+        ddetailUrl: `${host}/education/home/api/detail`,
+
         // 测试的信道服务地址
         // tunnelUrl: `${host}/weapp/tunnel`,
 

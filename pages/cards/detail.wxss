@@ -6,6 +6,15 @@ video {
   height: 211px;
 }
 
+.other-item {
+  border-top: 1px solid #F0F0F0;
+  padding: 6px 10px;
+}
+
+.other-item .title {
+  font-size: 16px;
+  /* color: #666; */
+}
 
 .header-card {
   padding: 10px;

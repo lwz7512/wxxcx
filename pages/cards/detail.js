@@ -18,58 +18,79 @@ Page({
     initialTime: 0,
     marquees: [],
     price: 0,
+    others: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var course = getApp().globalData.course;
-    if(!course) return;
-
-    console.log(course);
-    this.setData({price: Number(course.price)});
-
-    // restore play position...@2018/06/25
-    // *** set initial time here to restore the last playing status;
-    // var savedPosition = wx.getStorageSync(course.course_id+'');
-    // if(savedPosition) this.setData({initialTime: savedPosition});
-
-    // FIXME, just for 20M .mp3 playing test...@2018/07/26
-    // this.setData({video_src: 'https://lwz7512.oss-cn-beijing.aliyuncs.com/tax/tax.sameformat.mp4'});
-    // this.setData({video_src: course.av_link});
-
-    // save the context to stop later...
-    this.videoContext = wx.createVideoContext('myVideo');
-
-    this.setData({video_clips: course.av_arr});
-    if(course.av_arr.length){
-      this.setData({video_src: course.av_arr[0]}); // play the first clip...
-    }
-
-
+    // ------- prepare ----------------
+    var context = this;
     var app = getApp();
+    var mdParser = app.globalData.wxParser;
+    // save the context to stop later...
+    context.videoContext = wx.createVideoContext('myVideo');
     var res = wx.getSystemInfoSync()
     console.log(res.windowHeight);
     // 去除播放器的高度 @2018/08/01
-    this.setData({
+    context.setData({
       windowHeight: res.windowHeight-247,
       windowWidth:  res.windowWidth
     });
 
-    var mdParser = app.globalData.wxParser;
+    // -------- course from others -----
+    if(options.src){
+      wx.showLoading({
+        title: '加载中',
+      });
+      wx.request({
+        url: config.service.ddetailUrl,
+        method: 'GET',
+        data: {session_3rd: Session.get().session_3rd, id: options.id},
+        success: function(res){
+          console.log(res);
+          var course = res.data.res.data;
+          wx.hideLoading();
+          context.setData({others: course.others});
+          context.setData({video_clips: course.av_arr});
+          context.setData({price: Number(course.price)});
+          if(course.av_arr.length){
+            context.setData({video_src: course.av_arr[0]}); // play the first clip...
+          }
+          var html = course.intro;
+          mdParser.wxParse('article', 'html', html, context, 5);
+          wx.setNavigationBarTitle({
+            title: course.name
+          });
+        }
+      });
+      return;
+    }
+
+
+    // -------- course from flow list ----------------
+    var course = app.globalData.course;
+    if(!course) return;
+
+    // console.log(course);
+    context.setData({price: Number(course.price)});
+    context.setData({video_clips: course.av_arr});
+    if(course.av_arr.length){
+      context.setData({video_src: course.av_arr[0]}); // play the first clip...
+    }
+
     var html = course.intro;
-    mdParser.wxParse('article', 'html', html, this, 5);
+    mdParser.wxParse('article', 'html', html, context, 5);
 
     wx.request({
       url: config.service.marqueeTxtUrl,
       method: 'GET',
       data: {session_3rd: Session.get().session_3rd, id: course.course_id},
       success: function(res){
-        console.log(res);
+        // console.log(res);
         // wx.hideLoading();
-        that.setData({
+        context.setData({
           marquees: res.data.res.data,
         });
         // reset scroll height
@@ -80,14 +101,24 @@ Page({
         // start marquee setting...
         if(!res.data.res.data.length) return;
         // save the interval...
-        that.interval = setInterval(()=>{
-          var mlength = that.data.marquees.length;
-          var next = that.data.activeIndex == mlength?1:that.data.activeIndex+1;
-          that.setData({activeIndex: next});
+        context.interval = setInterval(()=>{
+          var mlength = context.data.marquees.length;
+          var next = context.data.activeIndex == mlength?1:context.data.activeIndex+1;
+          context.setData({activeIndex: next});
           console.log("marquee: "+next);
         }, 3000);
-        that.setData({activeIndex: 1});
+        context.setData({activeIndex: 1});
         // ...end of success...
+      }
+    });
+
+    wx.request({
+      url: config.service.ddetailUrl,
+      method: 'GET',
+      data: {session_3rd: Session.get().session_3rd, id: course.course_id},
+      success: function(res){
+        // console.log(res);
+        context.setData({others: res.data.res.data.others});
       }
     });
 
@@ -151,6 +182,14 @@ Page({
     })
   },
 
+  openOtherItem: function(evt) {
+    var id = evt.currentTarget.dataset.id;
+    var src = evt.currentTarget.dataset.src;
+    wx.navigateTo({
+      url: '/pages/cards/detail?id='+id+'&src='+src
+    });
+  },
+
   // 试听
   trytolisten: function(evt) {
     if(this.data.playing) {
@@ -180,19 +219,18 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    if(this.data.playing) this.videoContext.pause();
+    // stop marquee @2018/08/01
+    // if(this.interval) clearInterval(this.interval);
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    var vid = getApp().globalData.course.course_id
-    if(this.data.playing) {
-      // wx.setStorageSync(vid+'', this.data.currentTime);
-      this.videoContext.pause();
-    }
+    // var vid = getApp().globalData.course.course_id
     getApp().globalData.course = null;
+    if(this.data.playing) this.videoContext.pause();
     // stop marquee @2018/08/01
     if(this.interval) clearInterval(this.interval);
   },

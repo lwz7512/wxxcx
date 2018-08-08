@@ -35,45 +35,6 @@
 </view>
 
 <scroll-view scroll-y style="height: {{windowHeight}}px; margin-top: 10px;" >
-  <view class="header-card gap">
-    <view class="card-title">
-      直播答疑
-    </view>
-    <view class="intro">
-      <view class="q">问：</view>
-      <view class="a">答：</view>
-    </view>
-  </view>
-  <!-- topic intro -->
-  <view class="header-card">
-    <view class="card-title">
-      本期要点
-    </view>
-    <view class="intro">
-      <!-- <text class="intro-txt"></text> -->
-      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-    </view>
-  </view>
-  <!-- directory -->
-  <!-- <view class="header-card ">
-    <view class="card-title">
-      目录
-    </view>
-    <view class="text-rows gap">
-      <view class="item">
-        <text class="fa icon-play-circled"></text>
-        <text class="section-title">1. 一小节视频标题</text>
-      </view>
-      <view class="item">
-        <text class="fa icon-play-circled"></text>
-        <text class="section-title">2. 一小节视频标题</text>
-      </view>
-      <view class="item">
-        <text class="fa icon-play-circled"></text>
-        <text class="section-title">3. 一小节视频标题</text>
-      </view>
-    </view>
-  </view> -->
   <!-- reward -->
   <view class="header-card gap">
     <view class="buttons" wx:if="{{price}}">
@@ -111,10 +72,54 @@
       <view class="one-column"></view>
     </view>
   </view>
+  <!-- <view class="header-card gap">
+    <view class="card-title">
+      直播答疑
+    </view>
+    <view class="intro">
+      <view class="q">问：</view>
+      <view class="a">答：</view>
+    </view>
+  </view> -->
+  <!-- topic intro -->
+  <view class="header-card gap">
+    <view class="card-title">
+      本期要点
+    </view>
+    <view class="intro">
+      <!-- <text class="intro-txt"></text> -->
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </view>
+  </view>
+  <!-- directory -->
+  <!-- <view class="header-card ">
+    <view class="card-title">
+      目录
+    </view>
+    <view class="text-rows gap">
+      <view class="item">
+        <text class="fa icon-play-circled"></text>
+        <text class="section-title">1. 一小节视频标题</text>
+      </view>
+      <view class="item">
+        <text class="fa icon-play-circled"></text>
+        <text class="section-title">2. 一小节视频标题</text>
+      </view>
+      <view class="item">
+        <text class="fa icon-play-circled"></text>
+        <text class="section-title">3. 一小节视频标题</text>
+      </view>
+    </view>
+  </view> -->
+
   <!-- extend read -->
   <view class="header-card gap">
     <view class="card-title">
       延展学习
+    </view>
+    <view class="other-item" wx:for="{{others}}" bindtap="openOtherItem"
+      data-id="{{item.id}}" data-src="ext">
+      <text class="title">{{item.name}}</text>
     </view>
   </view>
 </scroll-view>
