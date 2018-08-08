@@ -26,7 +26,7 @@ Page({
     var that = this;
     var res = wx.getSystemInfoSync()
     // console.log(res.windowHeight);
-    this.setData({windowHeight: res.windowHeight-30});
+    this.setData({windowHeight: res.windowHeight-92});
 
     wx.request({
       url: config.service.categoryUrl,

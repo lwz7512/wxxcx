@@ -55,6 +55,8 @@
   </scroll-view>
   <!-- float button @2018/08/02 -->
   <view class="custom-srvc" bindtap="openServiceForm">
+    <text class="float-txt up">私人</text>
+    <text class="float-txt down">定制</text>
     <image src="../../images/private_srvc.png" class="srvc-img"/>
   </view>
 </view>

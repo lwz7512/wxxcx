@@ -8,7 +8,7 @@
       bindended="videoEnded" style="width: {{windowWidth}}px;"></video>
   </view>
   <view class="card-body-white with-padding">
-    <view class="running-ads" wx:if="{{marquees.length}}">
+    <view class="running-ads" >
       <text class="ad-item {{activeIndex == (index+1)?'animation':''}}" wx:for="{{marquees}}"
         bindtap="openRecomdPage" data-id="{{item.id}}">
         {{item.name}}

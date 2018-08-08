@@ -2,7 +2,7 @@
 <view class="container">
   <view class="header">
     <view class="group">
-      <image src="../../images/robin.png"/>
+      <image src="../../images/cxy.png"/>
       <text class="name" >Robin😘</text>
     </view>
   </view>

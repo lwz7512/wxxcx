@@ -7,6 +7,21 @@
   bottom: 0;
 }
 
+.float-txt {
+  position: absolute;
+  font-size: 14px;
+  color: #FFF;
+}
+
+.float-txt.up {
+  left: 17px;
+  top: 10px;
+}
+.float-txt.down {
+  left: 17px;
+  top: 28px;
+}
+
 .waiting {
   padding-left: 10px;
   font-size: 14px;
@@ -134,7 +149,7 @@ swiper-item {
   margin: 0 10px;
   font-size: 18px;
   text-align: center;
-  color: #666;
+  color: #2C9F67;
 }
 
 .card .highlight {
@@ -143,7 +158,7 @@ swiper-item {
   color: #999;
 
   justify-content: center;
-  height: 60px;
+  height: 50px;
   overflow-y: hidden;
 }
 

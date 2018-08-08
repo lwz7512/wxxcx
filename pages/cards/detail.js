@@ -54,7 +54,7 @@ Page({
     console.log(res.windowHeight);
     // 去除播放器的高度 @2018/08/01
     this.setData({
-      windowHeight: res.windowHeight-221,
+      windowHeight: res.windowHeight-247,
       windowWidth:  res.windowWidth
     });
 
@@ -74,7 +74,7 @@ Page({
         });
         // reset scroll height
         if(res.data.res.data.length){
-          that.setData({windowHeight: res.windowHeight-247});
+          // that.setData({windowHeight: res.windowHeight-247});
         }
 
         // start marquee setting...

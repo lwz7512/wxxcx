@@ -86,9 +86,10 @@ swiper {
 
 .card .price {
   margin: 0 10px;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
-  color: #666;
+  color: #2C9F67;
+  /* font-weight: bolder; */
 }
 
 .card .highlight {

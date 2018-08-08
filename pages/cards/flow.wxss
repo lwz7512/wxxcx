@@ -11,13 +11,13 @@
   padding: 0;
 } */
 
-.weui-search-bar__form {
+/* .weui-search-bar__form {
   border-radius: 13px;
 }
 
 .weui-search-bar__label {
   border-radius: 13px;
-}
+} */
 
 
 .page__bd {
