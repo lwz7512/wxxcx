@@ -1,4 +1,6 @@
 // pages/cards/detail.js
+// 视频播放页面
+//
 const config = require('../../config');
 const Session = require('../../session');
 

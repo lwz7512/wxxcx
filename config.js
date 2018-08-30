@@ -6,6 +6,8 @@
 var host = 'https://demos.kstartup.cn';
 
 var config = {
+    // @2018/08/29
+    speedtestUrl: 'https://lwz7512-1256109222.cos.ap-shanghai.myqcloud.com/video/pain_of_coder.mp4.mp4',
 
     // 下面的地址配合云端 Demo 工作
     service: {

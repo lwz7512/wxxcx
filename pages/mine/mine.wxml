@@ -4,8 +4,9 @@
     <image src="../../images/mine-cover.png" class="bgimage" />
     <view class="group">
       <image class="avatar" src="{{logged ? userInfo.avatarUrl : '../../images/user-unlogin.png'}}" />
-      <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
-        点击登录
+      <button class="userinfo-nickname" wx:if="{{!logged}}" open-type="getUserInfo"
+        bindgetuserinfo="bindGetUserInfo" >
+        点我登录
       </button>
       <text class="name" wx:else>{{userInfo.nickName}}</text>
     </view>
@@ -60,6 +61,12 @@
         <navigator url="{{page_sharefriends}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active"
           bindtap="shareToFriends">
             <view class="weui-cell__bd">分享到朋友圈</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+        <!-- @2018/08/30 -->
+        <navigator url="{{page_speedtest}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active"
+          bindtap="shareToFriends">
+            <view class="weui-cell__bd">网速测试</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
     </view>

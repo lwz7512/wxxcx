@@ -33,6 +33,7 @@ Page({
     page_certificates:'void', // /pages/mine/certificates
     page_invites:  'void', // /pages/mine/invites
     page_sharefriends:'void', // use api...
+    page_speedtest: 'speedtest',
   },
 
   /**
@@ -42,7 +43,7 @@ Page({
   onLoad: function (options) {
     var res = wx.getSystemInfoSync()
     // console.log(res.windowHeight);
-    this.setData({windowHeight: res.windowHeight-160});
+    this.setData({windowHeight: res.windowHeight-162});
 
     wechat.checkSession().then(() => {
       // console.log('session exist...');
@@ -77,24 +78,27 @@ Page({
     });
   },
 
+  loginTap: function (e) {
+    setTimeout(()=>util.showSuccess('按钮点击好使'), 1000);
+  },
+
   // user invode login...
   bindGetUserInfo: function (e) {
     if (this.data.logged) return;
     // cancel selectItem
     this.setData({ selected: 0 });
 
-    util.showBusy('正在登录');
-
     var that = this;
     var userInfo = e.detail.userInfo;
-
-    console.log(userInfo);
+    // console.log(userInfo);
     var options = {
       encryptedData: e.detail.encryptedData,
       iv: e.detail.iv,
       userInfo: userInfo
     };
+
     this.doLogin(options);
+    util.showBusy('正在登录');
   },
 
   doLogin: function (options) {

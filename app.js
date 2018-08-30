@@ -8,5 +8,4 @@ App({
     var WxParse = require('wxParse/wxParse.js');
     this.globalData.wxParser = WxParse;
   }
-
 })

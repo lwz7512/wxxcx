@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mine/speedtest",
     "pages/mine/certificates",
     "pages/class/class",
     "pages/user/guide",
@@ -18,6 +19,7 @@
     "pages/mine/ordered",
     "pages/award/order",
     "pages/class/custom"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

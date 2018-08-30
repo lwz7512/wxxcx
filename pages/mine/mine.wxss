@@ -70,7 +70,7 @@ button[type=primary] {
 }
 
 .userinfo-nickname {
-    font-size: 32rpx;
+    font-size: 36rpx;
     background-color: transparent;
     color: #FFF;
     /* color: #007AFF; */
