@@ -1,4 +1,19 @@
 /* pages/class/class.wxss */
+
+
+.mag-item {
+  background-color: #FFF;
+}
+
+.weui-badge {
+  margin-right: 5px;
+  background-color: #158AFA;
+}
+
+.weui-media-box__desc {
+  margin-top: 14px;
+}
+
 .stv-container {
   position: fixed;
   top: 0;

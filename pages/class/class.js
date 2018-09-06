@@ -1,4 +1,5 @@
 // pages/class/class.js
+// 课堂主模块
 const config = require('../../config');
 const Session = require('../../session');
 
@@ -14,12 +15,13 @@ Page({
     categories: [
       {name:'专项培训', active: true, type: 1},{name:'精品课程', type: 2},
       // {name:'点读机', type: 3},{name:'最新政策法规', type: 4},{name:'私人定制', type: 7},
-      {name:'往期研讨会', type: 3},{name:'KPMG刊物', type: 4},{name:'精英训练营', type: 6}
+      {name:'往期研讨会', type: 3},{name:'KPMG刊物', type: 0},{name:'精英训练营', type: 6}
     ],
     windowHeight: 0,
     contents: ['专项培训有么有'], // for each section...
     results: [],
     current: 0, // save active index
+    format: 'card' // 'card', 'item'
   },
 
   onLoad:function(){
@@ -52,7 +54,10 @@ Page({
   selectMenu: function(evt) {
     var that = this;
     var current = evt.currentTarget.dataset.index;
+    // process select
     var type = evt.currentTarget.dataset.type;
+    console.log(type);
+
     this.data.categories.forEach((item,i) => {
       if (current == i) {
         item.active = true;
@@ -65,8 +70,11 @@ Page({
     // TODO, get data....
     if(this.data.current == current) return;
 
+    var serviceURL = config.service.categoryUrl;
+    if(type == 0) serviceURL = config.service.magazineUrl;
+
     wx.request({
-      url: config.service.categoryUrl,
+      url: serviceURL,
       method: 'GET',
       data: {
         session_3rd: Session.get().session_3rd,
@@ -78,6 +86,7 @@ Page({
         that.setData({
           results: res.data.res.data,
           loading: false,
+          format : type?'card':'item'
         });
       }
     });
@@ -129,6 +138,14 @@ Page({
     var id = params.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/cards/flow?id=' + id
+    });
+  },
+
+  openMagDetail: function (params) {
+    var id = params.currentTarget.dataset.id;
+    // console.log(id);
+    wx.navigateTo({
+      url: '/pages/class/magzine?id=' + id
     });
   },
 

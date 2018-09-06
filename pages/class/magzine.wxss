@@ -1,0 +1,53 @@
+/* pages/class/magzine.wxss */
+
+.page__hd {
+  padding: 15px;
+}
+
+button[type=primary] {
+  background-color: #56B5FC;
+  border-radius: 30px;
+}
+
+.weui-media-box__desc {
+  margin-top: 14px;
+}
+
+.weui-badge {
+  margin-right: 5px;
+  background-color: #158AFA;
+}
+
+.header-card {
+  padding: 10px;
+  background-color: #FFF;
+}
+
+.header-card.no-padding {
+  padding: 0;
+}
+
+.header-card .image-roundcorner {
+  width: 100%;
+  /* height: 160px; */
+
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+}
+
+.header-card .header-img {
+  width: 100%;
+  height: 100%;
+
+}
+
+.slide-image {
+  /* width: 295px; */
+  width: 100%;
+  height: 150px;
+}
+
+.art-title {
+  padding: 0px 20px 0 20px;
+}

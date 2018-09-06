@@ -18,8 +18,8 @@
     "pages/mine/invites",
     "pages/mine/ordered",
     "pages/award/order",
-    "pages/class/custom"
-
+    "pages/class/custom",
+    "pages/class/magzine"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -39,7 +39,10 @@ var config = {
         classTypeUrl: `${host}/education/home/api/course_type`,
         // course details @2018/08/08
         ddetailUrl: `${host}/education/home/api/detail`,
-
+        // @2018/09/05
+        magazineUrl: `${host}/education/home/api/information`,
+        // @2018/09/06
+        magDetailUrl:`${host}/education/home/api/information_detail`,
         // 测试的信道服务地址
         // tunnelUrl: `${host}/weapp/tunnel`,
 

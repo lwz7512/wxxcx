@@ -23,6 +23,7 @@ Page({
       inputShowed: true
     });
   },
+
   hideInput: function () {
     this.setData({
       inputVal: "",
@@ -30,12 +31,14 @@ Page({
       // results: this.data.results_raw // restore original list
     });
   },
+
   clearInput: function () {
     this.setData({
       inputVal: "",
       // results: this.data.results_raw // restore original list
     });
   },
+
   inputTyping: function (e) {
     var raw = this.data.results_raw;
     var key = e.detail.value;
