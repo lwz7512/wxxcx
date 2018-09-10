@@ -20,6 +20,12 @@ page{
   overflow-y: hidden;
 }
 
+.txt-placeholder {
+  padding: 20px;
+  font-size: 14px;
+  color: #666666;
+  display: block;
+}
 
 .page-body{
   padding-top: 60rpx;

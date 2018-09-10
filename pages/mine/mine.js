@@ -45,6 +45,10 @@ Page({
     // console.log(res.windowHeight);
     this.setData({windowHeight: res.windowHeight-162});
 
+    // session existance considered log on...@2019/09/07
+    var session = Session.get();
+    if(session) this.setData({userInfo: session.userinfo, logged: true})
+
     wechat.checkSession().then(() => {
       // console.log('session exist...');
       var session = Session.get();

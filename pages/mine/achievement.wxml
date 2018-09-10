@@ -1,3 +1,5 @@
 <!-- 积分兑换 -->
 <!--pages/mine/achievement.wxml-->
-<text>pages/mine/achievement.wxml</text>
+<view class="page">
+  <text class="txt-placeholder">正在🚧中敬请稍后...</text>
+</view>

@@ -1,2 +1,4 @@
 <!--pages/mine/readed.wxml-->
-<text>pages/mine/readed.wxml</text>
+<view class="page">
+  <text class="txt-placeholder">正在🚧中敬请稍后...</text>
+</view>

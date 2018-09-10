@@ -180,6 +180,9 @@ button.blue-outline {
 button.blue-outline.half {
   width: 150px;
 }
+button.blue-outline.one-third {
+  width: 100px;
+}
 /* wow.... it's magical to remove the button border @2018/06/07 */
 button.blue-outline::after {
   border: none;

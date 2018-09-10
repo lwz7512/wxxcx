@@ -3,7 +3,8 @@
 
 <view class="header-card no-padding">
   <view class="image-roundcorner">
-    <video id="myVideo" src="{{video_src}}" controls="true" initial-time="{{initialTime}}"
+    <video id="myVideo" src="{{video_src}}" controls="true"
+      initial-time="{{initialTime}}" autoplay="{{autoplay}}"
       bindplay="videoPlayed" bindpause="videoPaused" bindtimeupdate="videoUpdated"
       bindended="videoEnded" style="width: {{windowWidth}}px;"></video>
   </view>
@@ -38,14 +39,15 @@
   <!-- reward -->
   <view class="header-card gap">
     <view class="buttons" wx:if="{{price}}">
-      <button class="blue-outline" bindtap="trytolisten">试听</button>
+      <button class="blue-outline" bindtap="playnext">{{playlabel}}</button>
       <button class="blue-outline">咨询</button>
       <button class="blue-outline" bindtap="openOrder">购买</button>
       <button class="blue-outline" open-type="share">分享</button>
     </view>
     <view class="buttons" wx:else>
-      <button class="blue-outline half">咨询</button>
-      <button class="blue-outline half" open-type="share">分享</button>
+      <button class="blue-outline one-third" bindtap="playnext">{{playlabel}}</button>
+      <button class="blue-outline one-third">咨询</button>
+      <button class="blue-outline one-third" open-type="share">分享</button>
     </view>
 
     <view class="long-btn">

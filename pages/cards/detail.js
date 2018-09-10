@@ -21,6 +21,9 @@ Page({
     marquees: [],
     price: 0,
     others: [],
+    cid: '', // save for playing from paused time @2018/09/10
+    autoplay: false,
+    playlabel: '播放'
   },
 
   /**
@@ -33,19 +36,20 @@ Page({
     var mdParser = app.globalData.wxParser;
     // save the context to stop later...
     context.videoContext = wx.createVideoContext('myVideo');
-    var res = wx.getSystemInfoSync()
-    console.log(res.windowHeight);
+    var res = wx.getSystemInfoSync();
+
     // 去除播放器的高度 @2018/08/01
     context.setData({
       windowHeight: res.windowHeight-247,
       windowWidth:  res.windowWidth
     });
+    // save current course @2018/09/10
+    context.setData({cid: options.id});
+    context.setInitTime(options.id);
 
     // -------- course from others -----
     if(options.src){
-      wx.showLoading({
-        title: '加载中',
-      });
+      wx.showLoading({title: '加载中',});
       wx.request({
         url: config.service.ddetailUrl,
         method: 'GET',
@@ -74,7 +78,6 @@ Page({
     // -------- course from flow list ----------------
     var course = app.globalData.course;
     if(!course) return;
-
     // console.log(course);
     context.setData({price: Number(course.price)});
     context.setData({video_clips: course.av_arr});
@@ -107,7 +110,7 @@ Page({
           var mlength = context.data.marquees.length;
           var next = context.data.activeIndex == mlength?1:context.data.activeIndex+1;
           context.setData({activeIndex: next});
-          console.log("marquee: "+next);
+          // console.log("marquee: "+next);
         }, 3000);
         context.setData({activeIndex: 1});
         // ...end of success...
@@ -133,10 +136,36 @@ Page({
   // @2018/06/25
   videoPlayed: function () {
     this.setData({playing: true});
+    this.setData({playlabel: '暂停'});
   },
 
   videoPaused: function () {
     this.setData({playing: false});
+    this.setData({playlabel: '续播'});
+
+    var cid = 'c_'+this.data.cid;
+    var time= this.data.currentTime;
+    wx.setStorageSync(cid, time);
+    console.log('>>> cached: '+cid+'@'+time);
+  },
+
+  getStorageCid: function (cid) {
+    return wx.getStorageSync('c_'+cid) || null;
+  },
+
+  setInitTime: function (cid) {
+    var currentTime = wx.getStorageSync('c_'+cid) || null;
+    if(currentTime) {
+      this.setData({
+        initialTime: currentTime,
+        playlabel: '续播',
+      });
+      // this.videoContext.seek(currentTime);
+      console.log('initialTime for: '+cid);
+      console.log(currentTime);
+    }else{
+      console.log('no init time...');
+    }
   },
 
   videoUpdated: function (e) {
@@ -193,15 +222,26 @@ Page({
   },
 
   // 试听
-  trytolisten: function(evt) {
-    if(this.data.playing) {
-      // wx.setStorageSync(vid+'', this.data.currentTime);
-      this.videoContext.pause();
-    }
-    this.setData({video_src: this.data.video_clips[0]});
-    setTimeout(() => this.videoContext.play(), 50);
-  },
+  // trytolisten: function(evt) {
+  //   if(this.data.playing) {
+  //     // wx.setStorageSync(vid+'', this.data.currentTime);
+  //     this.videoContext.pause();
+  //   }
+  //   this.setData({video_src: this.data.video_clips[0]});
+  //   setTimeout(() => this.videoContext.play(), 50);
+  // },
 
+  playnext: function () {
+    if(this.data.playing) return this.videoContext.pause();
+
+    var cid = this.data.cid;
+    var currentTime = wx.getStorageSync('c_'+cid) || null;
+    this.videoContext.play();
+
+    if(currentTime) {
+      this.videoContext.seek(currentTime);
+    }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -222,6 +262,7 @@ Page({
    */
   onHide: function () {
     if(this.data.playing) this.videoContext.pause();
+    console.log('onhide :'+this.data.playing);
     // stop marquee @2018/08/01
     // if(this.interval) clearInterval(this.interval);
   },
@@ -232,7 +273,11 @@ Page({
   onUnload: function () {
     // var vid = getApp().globalData.course.course_id
     getApp().globalData.course = null;
-    if(this.data.playing) this.videoContext.pause();
+    // console.log('on unload: '+this.data.playing);
+    if(this.data.playing) {
+      this.videoContext.pause();
+      this.videoPaused(); // FIXME, add this is must @2018/09/10
+    }
     // stop marquee @2018/08/01
     if(this.interval) clearInterval(this.interval);
   },

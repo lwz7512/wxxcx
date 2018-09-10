@@ -1,2 +1,4 @@
 <!--pages/mine/invites.wxml-->
-<text>pages/mine/invites.wxml</text>
+<view class="page">
+  <text class="txt-placeholder">正在🚧中敬请稍后...</text>
+</view>

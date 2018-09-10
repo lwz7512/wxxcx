@@ -18,7 +18,7 @@
   </view>
 
   <view class="tab-bar">
-    <swiper display-multiple-items="4">
+    <swiper display-multiple-items="4" circular>
       <block wx:for="{{categories}}" wx:key="item">
         <swiper-item bindtap="selectMenu" data-index="{{index}}" data-type="{{item.type}}">
           <text class="cate-txt">{{item.name}}</text>
