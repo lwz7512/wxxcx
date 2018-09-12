@@ -43,9 +43,13 @@ var config = {
         magazineUrl: `${host}/education/home/api/information`,
         // @2018/09/06
         magDetailUrl:`${host}/education/home/api/information_detail`,
+        // @2018/09/11
+        collectUrl:  `${host}/education/home/api/collect`,//id, type,
+        unCollectUrl:`${host}/education/home/api/uncollect`,
+        myCollectUrl:`${host}/education/home/api/mycollect`,
+
         // 测试的信道服务地址
         // tunnelUrl: `${host}/weapp/tunnel`,
-
         // 上传图片接口
         // uploadUrl: `${host}/weapp/upload`
     }

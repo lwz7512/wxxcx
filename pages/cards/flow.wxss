@@ -1,23 +1,31 @@
 /* pages/cards/flow.wxss */
 
-/* page {
-  width: 100%;
-  height: 100%;
-} */
-
-/* .full-screen {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-} */
-
-/* .weui-search-bar__form {
-  border-radius: 13px;
+.custom-srvc {
+  position: fixed;
+  bottom: 88px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: #FFFFFF;
 }
 
-.weui-search-bar__label {
-  border-radius: 13px;
-} */
+.srvc-img {
+  width: 60px;
+  height: 60px;
+}
+
+.float-txt {
+  position: absolute;
+  color: #FFF;
+}
+
+.float-txt.big {
+  font-size: 18px;
+  left: 12px;
+  top: 16px;
+}
 
 
 .page__bd {

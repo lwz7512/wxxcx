@@ -4,6 +4,34 @@
   padding: 15px;
 }
 
+.custom-srvc {
+  position: fixed;
+  bottom: 88px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+}
+
+.srvc-img {
+  width: 60px;
+  height: 60px;
+}
+
+.float-txt {
+  position: absolute;
+  color: #FFF;
+}
+
+.float-txt.big {
+  font-size: 18px;
+  left: 12px;
+  top: 16px;
+}
+
+
 button[type=primary] {
   background-color: #56B5FC;
   border-radius: 30px;

@@ -167,7 +167,7 @@ video {
   color: #56B5FC;
   font-size: 16px;
   border: 1px solid #56B5FC;
-  padding: 4px 12px;
+  padding: 4px 18px;
 }
 
 button.blue-outline {

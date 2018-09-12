@@ -10,13 +10,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '',
+    title   : '',
     head_img: '',
     pub_time: '',
     content : '',
     pdf_url : '',
     has_pdf : true,
-    tags    : []
+    tags    : [],
+    mid     : '', // @2018/09/12
   },
 
   /**
@@ -26,6 +27,7 @@ Page({
     var that = this;
     var app = getApp();
     var mdParser = app.globalData.wxParser;
+    this.setData({mid: options.id}); // save for later use
 
     wx.request({
       url: config.service.magDetailUrl+'?id='+options.id,
@@ -91,6 +93,24 @@ Page({
 
   },
 
+  markIt: function () {
+    console.log('mark magzine: '+this.data.mid);
+    wx.showLoading({title: '保存中...'});
+    wx.request({
+      url: config.service.collectUrl+'?id='+this.data.mid,
+      method: 'GET',
+      data: {
+        session_3rd: Session.get().session_3rd,
+        type: 'information'
+      },
+      success: function(res){
+        // console.log(res);
+        wx.hideLoading();
+        if(res.data.meta.code == 200) wx.showToast({title: '收藏成功',icon: 'none'});
+        if(res.data.meta.code == 400) wx.showToast({title: '收藏过了',icon: 'none'});
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

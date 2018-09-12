@@ -1,4 +1,8 @@
 // pages/mine/favorites.js
+const config = require('../../config');
+const Session = require('../../session');
+const util = require('../../utils/util');
+
 Page({
 
   /**
@@ -6,17 +10,52 @@ Page({
    */
   data: {
     windowHeight: 0,
+    results: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     var res = wx.getSystemInfoSync()
     // console.log(res.windowHeight);
     this.setData({windowHeight: res.windowHeight});
 
-    
+    wx.request({
+      url: config.service.myCollectUrl,
+      method: 'GET',
+      data: {session_3rd: Session.get().session_3rd},
+      success: function(res){
+        console.log(res);
+        wx.hideLoading();
+        var favorites = res.data.res.data;
+        favorites.forEach(item => {
+          var ctime = item.detail.ctime;
+          item.showTime = util.formatTime(new Date(parseInt(ctime)*1000));
+        });
+        that.setData({results: favorites});
+      }
+    });
+    wx.showLoading({
+      title: '加载中',
+    });
+  },
+
+  // open couse cards...
+  openCourse: function (e) {
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/cards/flow?id=' + id
+    })
+  },
+
+  openMagDetail: function (params) {
+    var id = params.currentTarget.dataset.id;
+    // console.log(id);
+    wx.navigateTo({
+      url: '/pages/class/magzine?id=' + id
+    });
   },
 
   /**

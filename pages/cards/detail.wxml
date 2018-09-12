@@ -40,13 +40,13 @@
   <view class="header-card gap">
     <view class="buttons" wx:if="{{price}}">
       <button class="blue-outline" bindtap="playnext">{{playlabel}}</button>
-      <button class="blue-outline">咨询</button>
+      <button class="blue-outline" open-type="contact">咨询</button>
       <button class="blue-outline" bindtap="openOrder">购买</button>
       <button class="blue-outline" open-type="share">分享</button>
     </view>
     <view class="buttons" wx:else>
       <button class="blue-outline one-third" bindtap="playnext">{{playlabel}}</button>
-      <button class="blue-outline one-third">咨询</button>
+      <button class="blue-outline one-third" open-type="contact">咨询</button>
       <button class="blue-outline one-third" open-type="share">分享</button>
     </view>
 

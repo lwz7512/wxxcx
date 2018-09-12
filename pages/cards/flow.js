@@ -5,7 +5,7 @@ const Session = require('../../session');
 Page({
 
   /**
-   * 页面的初始数据
+   * 某个专题内的课程列表卡片
    */
   data: {
     inputShowed: false,
@@ -16,6 +16,7 @@ Page({
     splashIn: false,
     windowHeight: 0,
     details: {},
+    cid: '', // save on load to share... @2018/09/11
   },
 
   showInput: function () {
@@ -71,6 +72,7 @@ Page({
     var res = wx.getSystemInfoSync();
 
     this.setData({windowHeight: res.windowHeight-48});
+    this.setData({cid: options.id});// save it ...
 
     wx.request({
       url: config.service.cdetailUrl+'/'+options.id,
@@ -101,6 +103,25 @@ Page({
     // open it...
     wx.navigateTo({
       url: '/pages/cards/detail?id='+id
+    });
+  },
+
+  markIt: function () {
+    console.log('mark course: '+this.data.cid);
+    wx.showLoading({title: '保存中...'});
+    wx.request({
+      url: config.service.collectUrl+'?id='+this.data.cid,
+      method: 'GET',
+      data: {
+        session_3rd: Session.get().session_3rd,
+        type: 'course'
+      },
+      success: function(res){
+        // console.log(res);
+        wx.hideLoading();
+        if(res.data.meta.code == 200) wx.showToast({title: '收藏成功',icon: 'none'});
+        if(res.data.meta.code == 400) wx.showToast({title: '收藏过了',icon: 'none'});
+      }
     });
   },
 

@@ -24,10 +24,10 @@
             <view class="weui-cell__bd">我的收藏</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
-        <navigator url="{{page_learnpath}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <!-- <navigator url="{{page_learnpath}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">学习之路</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </navigator>
+        </navigator> -->
     </view>
 
     <view class="weui-cells weui-cells_after-title">
@@ -35,7 +35,7 @@
             <view class="weui-cell__bd">我的定制化</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
-        <navigator url="{{page_achievement}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <!-- <navigator url="{{page_achievement}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">积分兑换</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
@@ -46,11 +46,11 @@
         <navigator url="{{page_readed}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">我的阅读</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </navigator>
+        </navigator> -->
     </view>
 
     <view class="weui-cells weui-cells_after-title">
-        <navigator url="{{page_certificates}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <!-- <navigator url="{{page_certificates}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">打印结业证书</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
@@ -62,7 +62,7 @@
           bindtap="shareToFriends">
             <view class="weui-cell__bd">分享到朋友圈</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </navigator>
+        </navigator> -->
         <!-- @2018/08/30 -->
         <navigator url="{{page_speedtest}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active"
           bindtap="shareToFriends">

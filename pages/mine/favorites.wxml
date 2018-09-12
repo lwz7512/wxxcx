@@ -3,54 +3,45 @@
 <!-- cards -->
 <view class="page">
   <scroll-view scroll-y style="height: {{windowHeight}}px;" >
-    <text class="txt-placeholder">正在🚧中敬请稍后...</text>
-  <!-- <view class="card">
-    <view class="card-body-shadow">
-      <view class="image-roundcorner">
-        <image src="../../images/header-img.png" class="slide-image header-img"/>
-      </view>
-      <view class="card-body-white">
-        <view class="footer ">
-          <view class="footer-title">政策法规解读第一课</view>
-          <view class="footer-tags ">
-            <text class="highlight" >2018-06-15</text>
+    <!-- <text class="txt-placeholder">正在🚧中敬请稍后...</text> -->
+    <block wx:for="{{results}}" wx:key="item">
+      <!-- course -->
+      <view wx:if="{{item.type=='course'}}" class="card" bindtap="openCourse" data-id="{{item.app_id}}">
+        <view class="card-body-shadow">
+          <view class="image-roundcorner">
+            <image src="{{item.detail.head_img_url}}" class="slide-image header-img"/>
+          </view>
+          <view class="card-body-white">
+            <view class="footer ">
+              <view class="footer-title">{{item.detail.name}}</view>
+              <view class="footer-tags ">
+                <text class="highlight" >{{item.showTime}}</text>
+              </view>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </view>
+      <!-- information -->
+      <view class="card" wx:if="{{item.type=='information'}}" bindtap="openMagDetail" data-id="{{item.app_id}}">
+        <view class="card-body-shadow">
+          <view class="weui-media-box weui-media-box_appmsg mag-item" hover-class="weui-cell_active" >
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" src="{{item.detail.head_img_url}}" />
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title">{{item.detail.title}}</view>
+              <!-- <view class="weui-media-box__desc">{{item.published_at_show}}</view> -->
+              <view class="weui-media-box__desc">
+                <view class="weui-badge" wx:for="{{item.detail.tags}}" wx:for-item="t" >
+                  {{t}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
 
-  <view class="card">
-    <view class="card-body-shadow">
-      <view class="image-roundcorner">
-        <image src="../../images/header-img.png" class="slide-image header-img"/>
-      </view>
-      <view class="card-body-white">
-        <view class="footer ">
-          <view class="footer-title">政策法规解读第一课</view>
-          <view class="footer-tags ">
-            <text class="highlight" >2018-06-15</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view class="card">
-    <view class="card-body-shadow">
-      <view class="image-roundcorner">
-        <image src="../../images/header-img.png" class="slide-image header-img"/>
-      </view>
-      <view class="card-body-white">
-        <view class="footer ">
-          <view class="footer-title">政策法规解读第一课</view>
-          <view class="footer-tags ">
-            <text class="highlight" >2018-06-15</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view> -->
+    </block>
 
   </scroll-view>
 </view>
