@@ -28,7 +28,7 @@
     </view>
     <view class="weui-progress">
         <view class="weui-progress__bar">
-            <progress percent="{{percent}}" stroke-width="3" />
+            <progress percent="{{percent}}" stroke-width="4" />
         </view>
         <view class="weui-progress__opr">
             {{speed}}K/s

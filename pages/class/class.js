@@ -2,6 +2,7 @@
 // 课堂主模块
 const config = require('../../config');
 const Session = require('../../session');
+const Promise = require('../../utils/bluebird');
 
 Page({
 
@@ -12,11 +13,7 @@ Page({
     inputShowed: false,
     inputVal: "",
     loading: true,
-    categories: [
-      {name:'专项培训', active: true, type: 1},{name:'精品课程', type: 2},
-      // {name:'点读机', type: 3},{name:'最新政策法规', type: 4},{name:'私人定制', type: 7},
-      {name:'往期研讨会', type: 3},{name:'KPMG刊物', type: 0},{name:'精英训练营', type: 6}
-    ],
+    categories: [],
     windowHeight: 0,
     contents: ['专项培训有么有'], // for each section...
     results: [],
@@ -30,22 +27,49 @@ Page({
     // console.log(res.windowHeight);
     this.setData({windowHeight: res.windowHeight-92});
 
-    wx.request({
-      url: config.service.categoryUrl,
-      method: 'GET',
-      data: {
-        session_3rd: Session.get().session_3rd,
-        type: 1,
-      },
-      success: function(res){
-        console.log(res);
-        wx.hideLoading();
-        that.setData({
-          results: res.data.res.data,
-          loading: false,
-        });
-      }
+    var categoriesPrms = new Promise((resolve, reject) => {
+      wx.request({
+        url: config.service.classTypeUrl,
+        method: 'GET',
+        data: {
+          session_3rd: Session.get().session_3rd,
+        },
+        success: function(res){
+          console.log(res);
+          var categories = res.data.res.data;
+          // add KPMG magzine
+          categories.push({name:'KPMG刊物', id: '0'});
+          // add active for first slide
+          categories.forEach((item, index) => {
+            if(index == 0) item.active = true;
+          });
+          that.setData({categories: categories});
+          resolve(categories[0]);// end callback
+        }
+      });
     });
+
+    categoriesPrms.then(item => {
+      console.log('>>> got: ');
+      console.log(item);
+      wx.request({
+        url: config.service.categoryUrl,
+        method: 'GET',
+        data: {
+          session_3rd: Session.get().session_3rd,
+          type: item.id,
+        },
+        success: function(res){
+          console.log(res);
+          wx.hideLoading();
+          that.setData({
+            results: res.data.res.data,
+            loading: false,
+          });
+        }
+      });
+    });
+
     wx.showLoading({
       title: '加载中',
     });
@@ -71,7 +95,7 @@ Page({
     if(this.data.current == current) return;
 
     var serviceURL = config.service.categoryUrl;
-    if(type == 0) serviceURL = config.service.magazineUrl;
+    if(type == '0') serviceURL = config.service.magazineUrl;
 
     wx.request({
       url: serviceURL,
@@ -86,7 +110,7 @@ Page({
         that.setData({
           results: res.data.res.data,
           loading: false,
-          format : type?'card':'item'
+          format : type=='0'?'item':'card'
         });
       }
     });

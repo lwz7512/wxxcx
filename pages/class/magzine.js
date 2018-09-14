@@ -18,6 +18,8 @@ Page({
     has_pdf : true,
     tags    : [],
     mid     : '', // @2018/09/12
+    windowHeight: 0,
+    dnpercent: 0, // download percent...
   },
 
   /**
@@ -26,6 +28,11 @@ Page({
   onLoad: function (options) {
     var that = this;
     var app = getApp();
+
+    var res = wx.getSystemInfoSync();
+    // console.log(res.windowHeight);
+    this.setData({windowHeight: res.windowHeight - 20});
+
     var mdParser = app.globalData.wxParser;
     this.setData({mid: options.id}); // save for later use
 
@@ -89,6 +96,10 @@ Page({
       fail: function(err) {
         that.showAlert(err);
       }
+    });
+    downloadTask.onProgressUpdate((res) => {
+      console.log('下载进度', res.progress)
+      that.setData({dnpercent: res.progress});
     });
 
   },

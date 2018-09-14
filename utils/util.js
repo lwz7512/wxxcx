@@ -5,7 +5,7 @@ const formatTime = date => {
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-  
+
   return [year, month, day].map(formatNumber).join('-')
   // return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
@@ -40,4 +40,14 @@ var showModel = (title, content, success) => {
     });
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+var showAlert = (title) => {
+    wx.showToast({
+        title: title,
+        icon: 'none',
+        image:'../../images/icon_intro.png',
+        duration: 3000
+    });
+}
+
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, showAlert }

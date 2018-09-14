@@ -4,7 +4,7 @@ const app = getApp();
 const Session = require('../../session');
 const config = require('../../config');
 const util = require('../../utils/util');
-const Promise = require('../../utils/bluebird')
+const Promise = require('../../utils/bluebird');
 const wechat = require('../../utils/wechat');
 
 Page({
@@ -98,6 +98,7 @@ Page({
             return;
           }
           that.setData({ slides: result.data.res.data });
+          // FIXME, maybe need delay opening? @2018/09/14
           // forward to user guide @2018/06/22
           that.openUserGuidePage();
         }
@@ -125,9 +126,34 @@ Page({
   // @2018/06/22
   // to check if save the selections; @2018/06/24
   openUserGuidePage: function () {
-    var selected = wx.getStorageSync('complete');
+    // var selected = wx.getStorageSync('complete');
+    // if(!selected) util.showAlert('NO SYNC STORAGE!');
+
+    // try {
+    //   var value = wx.getStorageSync('complete')
+    //   if (value) {
+    //   	util.showAlert('HAVE SYNC STORAGE!');
+    //   }
+    // } catch (e) {
+    //   util.showAlert('CATCHED SYNC STORAGE ERROR!');
+    //   util.showAlert(e);
+    // }
+
+    // FIXME, use asynchrozied method to get storage... @2018/09/14
+    wx.getStorage({
+      key: 'complete',
+      success: function(res) {
+      	// util.showAlert('HAVE ASYNC STORAGE!');
+      },
+      fail: function() {
+        //
+        // util.showAlert('FAIL ASYNC STORAGE!');
+        wx.navigateTo({url: '/pages/user/guide'});
+      }
+    });
+
     // console.log(selected?true:false);
-    if(!selected) wx.navigateTo({url: '/pages/user/guide'});
+    // if(!selected) wx.navigateTo({url: '/pages/user/guide'});
   },
 
   onShareAppMessage: function (res) {
